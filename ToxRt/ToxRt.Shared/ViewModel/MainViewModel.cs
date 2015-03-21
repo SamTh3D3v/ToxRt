@@ -1,26 +1,46 @@
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
+using ToxRt.Model;
+using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
 
     public class MainViewModel : ViewModelBase
     {
-
-        public MainViewModel()
+        #region Fields
+        private IMessagesNavigationService _navigationService;
+        private ObservableCollection<Friend> _listFriends;
+        #endregion
+        #region Properties
+        public ObservableCollection<Friend> ListFriends
         {
-            #region Fields
-            
-            #endregion
-            #region Properties
+            get
+            {
+                return _listFriends;
+            }
 
-            #endregion
-            #region Commands
+            set
+            {
+                if (_listFriends == value)
+                {
+                    return;
+                }
 
-            #endregion
-            #region Ctors and Methods
-
-            #endregion           
+                _listFriends = value;
+                RaisePropertyChanged();
+            }
         }
+        #endregion
+        #region Commands
+
+        #endregion
+        #region Ctors and Methods
+        public MainViewModel(IMessagesNavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
+        #endregion       
     }
 }

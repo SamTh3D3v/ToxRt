@@ -11,7 +11,7 @@ using ToxRt.Annotations;
 namespace ToxRt.NavigationService
 {
    
-    class MessagesNavigationService : IMessagesNavigationService,INotifyPropertyChanged
+    public class MessagesNavigationService : IMessagesNavigationService,INotifyPropertyChanged
     {
         #region Fields
         private readonly Dictionary<string, Uri> _pagesByKey;

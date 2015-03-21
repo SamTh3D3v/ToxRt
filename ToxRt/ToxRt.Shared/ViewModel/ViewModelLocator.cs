@@ -1,6 +1,8 @@
+using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {    
@@ -12,7 +14,19 @@ namespace ToxRt.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MessagesViewModel>();
+#if WINDOWS_APP
+            SetupMessagesNavigation();
+#endif
         }
+#if WINDOWS_APP
+        private static void SetupMessagesNavigation()
+        {
+            var navigationService = new MessagesNavigationService();
+            navigationService.Configure("MessagesView", new Uri("../View/MessagesView.xaml", UriKind.Relative));           
+            SimpleIoc.Default.Register<IMessagesNavigationService>(() => navigationService);
+        }
+#endif
+
 
         public MainViewModel Main
         {

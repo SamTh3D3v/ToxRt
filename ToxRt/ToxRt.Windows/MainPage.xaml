@@ -14,8 +14,38 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>            
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>   
-        <ListBox Grid.Column="0" Margin="2"></ListBox>  
-        <Frame Grid.Column="1" Margin="2" x:Name="MainFrame" ></Frame>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="100"  Grid.Column="0" Background="WhiteSmoke" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image  Grid.Column="0" Margin="10"/>
+            <TextBlock Margin="10"  Grid.Column="1" />            
+        </Grid>
+        <ListView Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" Margin="2" ItemsSource="{Binding ListFriends}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding PicSource}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>  
+        <Frame Background="WhiteSmoke" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="2" x:Name="MainFrame" ></Frame>
     </Grid>
 </Page>

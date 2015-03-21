@@ -8,8 +8,9 @@ using GalaSoft.MvvmLight.Views;
 namespace ToxRt.NavigationService
 {
 
-
-    interface IMessagesNavigationService : INavigationService
+//No need to implement this service in the windows phone project...
+//i will use the default navigation service 
+    public interface IMessagesNavigationService : INavigationService
     {
         //parameter to be passed between pages 
         object Parameter { get; }
