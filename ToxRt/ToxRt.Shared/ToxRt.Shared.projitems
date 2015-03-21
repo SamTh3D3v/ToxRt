@@ -15,10 +15,30 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Friend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Profile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NavigationService\IMessagesNavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NavigationService\MessagesNavigationService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Images\attach.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\camera.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\groupe.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\phone.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\settings.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Resources\MainResourcesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

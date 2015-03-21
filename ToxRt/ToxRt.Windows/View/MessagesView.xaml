@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <Image Height="75" Width="75" Source="{Binding Friend.PicSource}" Margin="10" Grid.Column="0" Grid.RowSpan="2"/>
             <TextBlock Text="{Binding Friend.ScreenName}" Grid.Column="1" Grid.Row="0" />
-            <TextBlock Text="{Binding Friend.Name}" Grid.Column="1" Grid.Row="1" FontSize="10" />
+            <TextBlock Text="{Binding Friend.RealName}" Grid.Column="1" Grid.Row="1" FontSize="10" />
         </Grid>
         <ListView Background="WhiteSmoke" Grid.Row="1" Margin="2" ItemsSource="{Binding ListOnscreenMessages}">
             <ListView.ItemContainerStyle>

@@ -9,14 +9,14 @@ using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    public class MessagesViewModel:ViewModelBase
+    public class MessagesViewModel : ViewModelBase
     {
         #region Fields
-        private IMessagesNavigationService _navigationService;    
-        
-        #endregion 
-        #region Properties         
-        private ObservableCollection<Message> _listOnScreenMessages ;
+        private IMessagesNavigationService _navigationService;
+
+        #endregion
+        #region Properties
+        private ObservableCollection<Message> _listOnScreenMessages;
         private Friend _feriend;
         private String _textMessage;
         public ObservableCollection<Message> ListOnscreenMessages
@@ -73,8 +73,8 @@ namespace ToxRt.ViewModel
                 RaisePropertyChanged();
             }
         }
-        #endregion 
-        #region Commands    
+        #endregion
+        #region Commands
         private RelayCommand _sendCommand;
         public RelayCommand SendCommand
         {
@@ -89,14 +89,39 @@ namespace ToxRt.ViewModel
                     })));
             }
         }
-        #endregion 
+        #endregion
         #region Ctors and Methods
 
         public MessagesViewModel(IMessagesNavigationService navigationService)
         {
             _navigationService = navigationService;
+            Friend = navigationService.Parameter as Friend;
+            //For test purpus only
+            ListOnscreenMessages = new ObservableCollection<Message>()
+            {
+                new Message()
+                {
+                    MessageText = "Message num 1",
+                    Sender =  new Friend(){
+                    PicSource = "../Images/user.png",
+                    RealName = "Joseph Walsh",
+                    ScreenName = "Josheph"
+                   }
+                },
+                 new Message()
+                {
+                    MessageText = "Message num 1",
+                    Sender =  new Friend()
+                {
+                    PicSource = "../Images/user.png",
+                    RealName = "Joseph Walsh",
+                    ScreenName = "Josheph"
+                }
+                }
+            };
+
         }
-        
-        #endregion       
+
+        #endregion
     }
 }

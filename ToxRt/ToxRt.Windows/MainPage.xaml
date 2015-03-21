@@ -5,7 +5,16 @@
     xmlns:local="using:ToxRt"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/MainResourcesDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Page.DataContext>
         <Binding Source="{StaticResource Locator}" Path="Main"></Binding>
     </Page.DataContext>
@@ -24,10 +33,16 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image  Grid.Column="0" Margin="10"/>
-            <TextBlock Margin="10"  Grid.Column="1" />            
+            <Image  Grid.Column="0" Margin="10" Source="{Binding CurrentProfile.PicSource}"/>
+            <TextBlock Margin="10" Text="{Binding CurrentProfile.ScreenName}"  Grid.Column="1" />            
         </Grid>
-        <ListView Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" Margin="2" ItemsSource="{Binding ListFriends}">
+        <ListView IsItemClickEnabled="True" Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" Margin="2" ItemsSource="{Binding ListFriends}">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding FriendSelectedCommand}"
+                                                          InputConverter="{StaticResource ListViewItemClickedConverter}"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -41,7 +56,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="{Binding PicSource}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding RealName}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
