@@ -20,18 +20,41 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>            
-            <Image Height="75" Width="75" Margin="10" Grid.Column="0"/>
-            <TextBlock Grid.Column="0"/>
+            </Grid.ColumnDefinitions>  
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Height="75" Width="75" Source="{Binding Friend.PicSource}" Margin="10" Grid.Column="0" Grid.RowSpan="2"/>
+            <TextBlock Text="{Binding Friend.ScreenName}" Grid.Column="1" Grid.Row="0" />
+            <TextBlock Text="{Binding Friend.Name}" Grid.Column="1" Grid.Row="1" FontSize="10" />
         </Grid>
-        <ListBox Grid.Row="1"></ListBox>
+        <ListView Background="WhiteSmoke" Grid.Row="1" Margin="2" ItemsSource="{Binding ListOnscreenMessages}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="Tomato" Grid.Column="0" Text="{Binding Sender}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding MessageText}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Grid Grid.Row="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="10"  Grid.Column="0" Height="200"/>
-            <Button Content="Send" Grid.Column="1"/>
+            <TextBlock Margin="10" Text="{Binding TextMessage}"  Grid.Column="0" Height="150"/>
+            <Button  Content="Send" VerticalAlignment="Stretch" Command="{Binding SendCommand}" HorizontalContentAlignment="Stretch" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Page>
