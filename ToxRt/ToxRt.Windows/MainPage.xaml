@@ -16,6 +16,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>   
         <ListBox Grid.Column="0" Margin="2"></ListBox>  
-        <Frame Grid.Column="1" Margin="2" x:Name="MainFrame"></Frame>
+        <Frame Grid.Column="1" Margin="2" x:Name="MainFrame" ></Frame>
     </Grid>
 </Page>
