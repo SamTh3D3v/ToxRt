@@ -11,6 +11,23 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>            
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"></ListBox>        
+        <ListBox Grid.Column="1" Grid.Row="0"></ListBox>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"/>
+            <Button Content="Send" Grid.Column="1"/>
+        </Grid>
     </Grid>
 </Page>
