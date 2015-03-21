@@ -11,6 +11,7 @@ namespace ToxRt.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MessagesViewModel>();
         }
 
         public MainViewModel Main
@@ -18,6 +19,18 @@ namespace ToxRt.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public MessagesViewModel MessagesViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MessagesViewModel>();
             }
         }
         
