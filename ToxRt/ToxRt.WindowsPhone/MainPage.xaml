@@ -33,7 +33,7 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton Label="Status"   Command="{Binding StatusCommand}">
+                <AppBarButton Label="Status"   Command="{Binding ChangeStatusCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
@@ -61,8 +61,7 @@
         <ListView  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  Grid.Row="1" ItemsSource="{Binding ListFriends}" >
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
-                    <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
-                    <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
+                    <core:InvokeCommandAction Command="{Binding FriendSelectedCommand}"  InputConverter="{StaticResource ListViewItemClickedConverter}"/>                    
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <ListView.ItemContainerStyle>
@@ -81,14 +80,14 @@
                             </Grid.ColumnDefinitions>
 
                             <Border Margin="10" Width="79" Height="79">
-                                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Stretch="UniformToFill"/>
+                                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding PicSource}" Stretch="UniformToFill"/>
                             </Border>
                             <StackPanel Grid.Column="1"  VerticalAlignment="Center" Margin="14.5,2,0,0">
-                                <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemTextBlockStyle}" Foreground="Black"/>
-                                <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="DarkGray"/>
+                                <TextBlock Text="{Binding ScreenName}" Style="{ThemeResource ListViewItemTextBlockStyle}" Foreground="Black"/>
+                                <TextBlock Text="{Binding StatusMessage }" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="DarkGray"/>
                             </StackPanel>
                             <Border Background="{StaticResource ThemeBrush}" BorderThickness="0" Grid.Column="2" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                                <TextBlock Foreground="Black" FontSize="18" Text="{Binding CourseCount}" Style="{ThemeResource ControlHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Foreground="Black" FontSize="18" Text="Connected" Style="{ThemeResource ControlHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                             </Border>
                         </Grid>
                     </Border>
