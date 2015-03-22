@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using ToxRt.Helpers;
 
-namespace ToxRt.View
+namespace ToxRt.Helpers
 {
     public  class BindablePage:Page
     {

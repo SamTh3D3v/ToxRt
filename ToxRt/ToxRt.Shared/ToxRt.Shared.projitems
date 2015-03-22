@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\BindablePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Friend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Message.cs" />
@@ -32,6 +33,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\attach.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\camera.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\groupe.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\logo_head.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\phone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\send.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\settings.png" />
