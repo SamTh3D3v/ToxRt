@@ -95,8 +95,7 @@ namespace ToxRt.ViewModel
 
         public MessagesViewModel(IMessagesNavigationService navigationService)
         {
-            _navigationService = navigationService;
-            Friend = navigationService.Parameter as Friend;
+            _navigationService = navigationService;            
             //For test purpus only
             ListOnscreenMessages = new ObservableCollection<Message>()
             {
@@ -126,7 +125,8 @@ namespace ToxRt.ViewModel
         #endregion
 
         public void Activate(object parameter)
-        {            
+        {
+            Friend = parameter as Friend;
         }
 
         public void Deactivate(object parameter)
