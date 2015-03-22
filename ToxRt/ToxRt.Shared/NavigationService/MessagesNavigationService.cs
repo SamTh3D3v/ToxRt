@@ -74,8 +74,8 @@ namespace ToxRt.NavigationService
                 CurrentPageKey = pageKey;
 
                 if (frame != null)
-                {                    
-                    frame.Navigate(_pagesByKey[pageKey]);
+                {
+                    frame.Navigate(_pagesByKey[pageKey], parameter);
                 }
                 
             }
