@@ -110,7 +110,7 @@ namespace ToxRt.ViewModel
                 },
                  new Message()
                 {
-                    MessageText = "Message num 1",
+                    MessageText = "Message num 2",
                     Sender =  new Friend()
                 {
                     PicSource = "../Images/user.png",

@@ -32,6 +32,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\camera.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\groupe.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\phone.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\send.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\settings.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\user.png" />
   </ItemGroup>

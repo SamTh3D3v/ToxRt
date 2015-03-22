@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Image  Grid.Column="0" Margin="10" Source="{Binding CurrentProfile.PicSource}"/>
-            <TextBlock Margin="10" Text="{Binding CurrentProfile.ScreenName}"  Grid.Column="1" />            
+            <TextBlock Margin="10" Text="{Binding CurrentProfile.ScreenName}" Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="30"  Grid.Column="1" />            
         </Grid>
         <ListView IsItemClickEnabled="True" Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" Margin="2" ItemsSource="{Binding ListFriends}">
             <interactivity:Interaction.Behaviors>
@@ -49,18 +49,18 @@
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
+                <DataTemplate>                    
+                    <Grid Background="White" Margin="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding PicSource}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding RealName}"/>
+                        <Image Margin="2" Grid.Column="0" Source="{Binding PicSource}"/>
+                        <TextBlock Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="22" Grid.Column="1" Text="{Binding RealName}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>  
-        <Frame Background="WhiteSmoke" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="2" x:Name="MainFrame" ></Frame>
+        <Frame Background="WhiteSmoke" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="2" x:Name="MainFrame" />
     </Grid>
 </Page>

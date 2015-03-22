@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using ToxRt.Annotations;
+using ToxRt.View;
 
 namespace ToxRt.NavigationService
 {
@@ -14,7 +15,7 @@ namespace ToxRt.NavigationService
     public class MessagesNavigationService : IMessagesNavigationService,INotifyPropertyChanged
     {
         #region Fields
-        private readonly Dictionary<string, Uri> _pagesByKey;
+        private readonly Dictionary<string, Type> _pagesByKey;
         private readonly List<string> _historic;
         private string _currentPageKey;
         #endregion
@@ -42,7 +43,7 @@ namespace ToxRt.NavigationService
         #region Ctors and Methods
         public MessagesNavigationService()
         {
-            _pagesByKey = new Dictionary<string, Uri>();
+            _pagesByKey = new Dictionary<string, Type>();
             _historic = new List<string>();
         }
         public void GoBack()
@@ -59,7 +60,7 @@ namespace ToxRt.NavigationService
         }
 
         public virtual void NavigateTo(string pageKey, object parameter)
-        {
+        {            
             lock (_pagesByKey)
             {
                 if (!_pagesByKey.ContainsKey(pageKey))
@@ -71,7 +72,7 @@ namespace ToxRt.NavigationService
 
                 if (frame != null)
                 {
-                    frame.Navigate(_pagesByKey[pageKey].GetType());
+                    frame.Navigate(_pagesByKey[pageKey]);
                 }
                 Parameter = parameter;
                 _historic.Add(pageKey);
@@ -79,7 +80,7 @@ namespace ToxRt.NavigationService
             }
         }
 
-        public void Configure(string key, Uri pageType)
+        public void Configure(string key, Type pageType)
         {
             lock (_pagesByKey)
             {

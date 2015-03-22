@@ -16,7 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Background="WhiteSmoke">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -26,8 +26,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Image Height="75" Width="75" Source="{Binding Friend.PicSource}" Margin="10" Grid.Column="0" Grid.RowSpan="2"/>
-            <TextBlock Text="{Binding Friend.ScreenName}" Grid.Column="1" Grid.Row="0" />
-            <TextBlock Text="{Binding Friend.RealName}" Grid.Column="1" Grid.Row="1" FontSize="10" />
+            <TextBlock Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="30"  Text="{Binding Friend.ScreenName}" Grid.Column="1" Grid.Row="0" />
+            <TextBlock Text="{Binding Friend.RealName}" Grid.Column="1" Grid.Row="1" Foreground="LightBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="25" />
         </Grid>
         <ListView Background="WhiteSmoke" Grid.Row="1" Margin="2" ItemsSource="{Binding ListOnscreenMessages}">
             <ListView.ItemContainerStyle>
@@ -53,8 +53,18 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="10" Text="{Binding TextMessage}"  Grid.Column="0" Height="150"/>
-            <Button  Content="Send" VerticalAlignment="Stretch" Command="{Binding SendCommand}" HorizontalContentAlignment="Stretch" Grid.Column="1"/>
+            <TextBox  Background="White" Margin="2" Text="{Binding TextMessage}"  Grid.Column="0"/>
+            <Button Background="WhiteSmoke"  VerticalAlignment="Bottom" Command="{Binding SendCommand}" Grid.Column="1">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/send.png" Height="100"/>
+                        <StackPanel Orientation="Vertical" >
+                            <TextBlock Text="Send" VerticalAlignment="Center" Foreground="Black" />
+                            <TextBlock  Text="Message" FontSize="8" VerticalAlignment="Center" Foreground="Gray" />
+                        </StackPanel>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
         </Grid>
     </Grid>
 </Page>

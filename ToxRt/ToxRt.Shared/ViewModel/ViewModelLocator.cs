@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using ToxRt.NavigationService;
+using ToxRt.View;
 
 namespace ToxRt.ViewModel
 {    
@@ -22,7 +23,7 @@ namespace ToxRt.ViewModel
         private static void SetupMessagesNavigation()
         {
             var navigationService = new MessagesNavigationService();
-            navigationService.Configure("MessagesView", new Uri("../View/MessagesView.xaml", UriKind.Relative));           
+            navigationService.Configure("MessagesView",typeof(MessagesView));           
             SimpleIoc.Default.Register<IMessagesNavigationService>(() => navigationService);
         }
 #endif
@@ -35,8 +36,6 @@ namespace ToxRt.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-
-    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
