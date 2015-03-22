@@ -9,7 +9,7 @@ using ToxRt.Helpers;
 
 namespace ToxRt.View
 {
-    class BindablePage:Page
+    public  class BindablePage:Page
     {
         public BindablePage()
             : base()

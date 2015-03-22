@@ -3,13 +3,14 @@ using Windows.Networking.NetworkOperators;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ToxRt.Helpers;
 using ToxRt.Model;
 using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
 
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase,INavigable
     {
         #region Fields
         private IMessagesNavigationService _navigationService;
@@ -103,6 +104,18 @@ namespace ToxRt.ViewModel
             };
 
         }
-        #endregion       
+        #endregion
+
+        public void Activate(object parameter)
+        {            
+        }
+
+        public void Deactivate(object parameter)
+        {            
+        }
+
+        public void GoBack()
+        {            
+        }
     }
 }

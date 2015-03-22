@@ -12,12 +12,13 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ToxRt.View;
 
 
 namespace ToxRt
 {
 
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage :BindablePage
     {
         public MainPage()
         {
