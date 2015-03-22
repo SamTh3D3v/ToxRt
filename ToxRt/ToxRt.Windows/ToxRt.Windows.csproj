@@ -154,12 +154,6 @@
       <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SharpTox[Forked]\SharpTox\SharpTox\SharpTox Portable.csproj">
-      <Project>{3e9f2e3b-53b2-49a2-91a3-70816df89a1e}</Project>
-      <Name>SharpTox Portable</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
