@@ -63,12 +63,7 @@ namespace ToxRt.ViewModel
             }
 
             set
-            {
-                if (_textMessage == value)
-                {
-                    return;
-                }
-
+            {                
                 _textMessage = value;
                 RaisePropertyChanged();
             }
@@ -82,11 +77,16 @@ namespace ToxRt.ViewModel
             {
                 return _sendCommand
                     ?? (_sendCommand = new RelayCommand(
-                    () => ListOnscreenMessages.Add(new Message()
+                    () =>
                     {
-                        MessageText = TextMessage,
-                        Sender = Friend
-                    })));
+                        ListOnscreenMessages.Add(new Message()
+                        {
+                            MessageText = TextMessage,
+                            Sender = Friend
+                        });
+                        TextMessage = "";
+                    }
+                ));
             }
         }
         #endregion

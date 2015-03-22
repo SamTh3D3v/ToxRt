@@ -12,7 +12,8 @@ namespace ToxRt.Model
         #region Properties
         public String RealName { get; set; }
         public String ScreenName { get; set; }
-        public String PicSource { get; set; }   
+        public String PicSource { get; set; }
+        public String StatusMessage { get; set; }
         #endregion
         #region Commands
         

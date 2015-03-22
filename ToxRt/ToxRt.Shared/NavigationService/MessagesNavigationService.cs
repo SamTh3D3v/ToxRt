@@ -69,14 +69,15 @@ namespace ToxRt.NavigationService
                 }
 
                 var frame = GetDescendantFromName(Window.Current.Content, "MainFrame") as Frame;
-
-                if (frame != null)
-                {
-                    frame.Navigate(_pagesByKey[pageKey]);
-                }
                 Parameter = parameter;
                 _historic.Add(pageKey);
                 CurrentPageKey = pageKey;
+
+                if (frame != null)
+                {                    
+                    frame.Navigate(_pagesByKey[pageKey]);
+                }
+                
             }
         }
 

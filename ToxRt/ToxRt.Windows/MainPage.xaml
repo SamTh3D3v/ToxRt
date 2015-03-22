@@ -21,20 +21,25 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>            
+            <ColumnDefinition Width=".5*"/>            
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Height="100"  Grid.Column="0" Background="WhiteSmoke" Margin="2">
+        <Grid Grid.Row="0"   Grid.Column="0" Background="WhiteSmoke" Margin="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image  Grid.Column="0" Margin="10" Source="{Binding CurrentProfile.PicSource}"/>
-            <TextBlock Margin="10" Text="{Binding CurrentProfile.ScreenName}" Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="30"  Grid.Column="1" />            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Image  Grid.Column="0" Margin="10" Grid.Row="0" Grid.RowSpan="2" Source="{Binding CurrentProfile.PicSource}"/>
+            <TextBlock Margin="2" Grid.Row="0" Text="{Binding CurrentProfile.ScreenName}" Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Bottom" FontSize="25"  Grid.Column="1" />            
+            <TextBlock Margin="2"  Grid.Row="1" Text="{Binding CurrentProfile.StatusMessage}" Foreground="LightGray" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Top" FontSize="12"  Grid.Column="1" />            
         </Grid>
         <ListView IsItemClickEnabled="True" Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" Margin="2" ItemsSource="{Binding ListFriends}">
             <interactivity:Interaction.Behaviors>
@@ -52,7 +57,7 @@
                 <DataTemplate>                    
                     <Grid Background="White" Margin="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Margin="2" Grid.Column="0" Source="{Binding PicSource}"/>

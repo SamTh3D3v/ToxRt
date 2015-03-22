@@ -82,6 +82,7 @@ namespace ToxRt.ViewModel
             CurrentProfile=new Profile()
             {
                 RealName = "Elhamer Oussama",
+                StatusMessage = "Life is Good",
                 ScreenName = "SamTheDev",
                 PicSource = "../Images/user.png"
             };

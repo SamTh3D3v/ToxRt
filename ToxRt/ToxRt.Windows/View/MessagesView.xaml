@@ -42,8 +42,8 @@
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Foreground="Tomato" Grid.Column="0" Text="{Binding Sender}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding MessageText}"/>
+                        <TextBlock Foreground="DodgerBlue" Grid.Column="0" Margin="5,5,10,5" Text="{Binding Sender}"/>
+                        <TextBlock Grid.Column="1" Margin="5" Foreground="Black" Text="{Binding MessageText}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -53,7 +53,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox  Background="White" Margin="2" Text="{Binding TextMessage}"  Grid.Column="0"/>
+            <TextBox  Background="White" Margin="2" Text="{Binding TextMessage,Mode=TwoWay}"  Grid.Column="0"/>
             <Button Background="WhiteSmoke"  VerticalAlignment="Bottom" Command="{Binding SendCommand}" Grid.Column="1">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
