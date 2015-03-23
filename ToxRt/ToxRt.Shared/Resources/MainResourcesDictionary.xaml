@@ -6,5 +6,5 @@
     <SolidColorBrush x:Key="ThemeBrush" Color="#ecf0f1"/>
     <SolidColorBrush x:Key="ThemeFontBrush" Color="Black"/>        
     <converters:ListViewItemClickedConverter x:Key="ListViewItemClickedConverter"/>
-       
+    <converters:UserStatusToColorConverter x:Key="UserStatusToColorConverter"/>
 </ResourceDictionary>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Windows.Devices.Geolocation;
 using Windows.Networking.NetworkOperators;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -13,6 +14,12 @@ using ToxRt.NavigationService;
 namespace ToxRt.ViewModel
 {
 
+    public enum Status
+    {
+        Online,
+        Offline,
+        DontInterrupt
+    }
     public class MainViewModel : ViewModelBase,INavigable
     {
         #region Fields        
@@ -20,7 +27,8 @@ namespace ToxRt.ViewModel
         private IMessagesNavigationService _navigationService;
         private ObservableCollection<Friend> _listFriends;
         private Profile _currentProfile;
-        private Tox _tox; 
+        private Tox _tox;
+        private Status _userStatus = Status.Online;
         // for testing purpuse only
         private ToxNode[] _nodes = new ToxNode[]
         {
@@ -80,6 +88,24 @@ namespace ToxRt.ViewModel
                 }
 
                 _currentProfile = value;
+                RaisePropertyChanged();
+            }
+        }              
+        public Status UserStatus
+        {
+            get
+            {
+                return _userStatus;
+            }
+
+            set
+            {
+                if (_userStatus == value)
+                {
+                    return;
+                }
+
+                _userStatus = value;
                 RaisePropertyChanged();
             }
         }

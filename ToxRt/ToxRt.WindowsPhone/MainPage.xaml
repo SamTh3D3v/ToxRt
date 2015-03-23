@@ -21,11 +21,11 @@
     </ResourceDictionary>
     </helpers:BindablePage.Resources>
     <helpers:BindablePage.BottomAppBar>
-        <CommandBar Background="{StaticResource ThemeBrush}">
+        <CommandBar Background="{StaticResource ThemeBrush}" Foreground="Black">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Add Friend"   Command="{Binding AddFriendCommand}">
                     <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE1E2;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton Label="Search"   Command="{Binding SearchFriendCommand}">
@@ -33,15 +33,15 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton Label="Status"   Command="{Binding ChangeStatusCommand}">
+                <AppBarButton  Label="Status"  Command="{Binding ChangeStatusCommand}">
                     <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                        <FontIcon  FontFamily="Segoe UI Symbol" Foreground="{Binding UserStatus,Converter={StaticResource UserStatusToColorConverter}}"  Glyph="&#xE1D2;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Add Groupe" Command="{Binding AddGroupeCommand}"/>
-                <AppBarButton Label="Load Profile" Command="{Binding LoadProfileCommand}"/>
+                <AppBarButton Label="Add groupe" Command="{Binding AddGroupeCommand}"/>
+                <AppBarButton Label="Load profile" Command="{Binding LoadProfileCommand}"/>
                 <AppBarButton Label="Settings" Command="{Binding SettingsCommand}"/>
                 <AppBarButton Label="Credit" Command="{Binding CreditCommand}"/>                
             </CommandBar.SecondaryCommands>
@@ -56,7 +56,7 @@
             <Border HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/logo_head.png" />
             </Border>
-            <TextBlock Margin="4" Text="Friends" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="{StaticResource ThemeFontBrush}"/>
+            <TextBlock Margin="4" FontWeight="Bold" Text="Friends" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="{StaticResource ThemeFontBrush}"/>
         </StackPanel>
         <ListView  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  Grid.Row="1" ItemsSource="{Binding ListFriends}" >
             <interactivity:Interaction.Behaviors>
