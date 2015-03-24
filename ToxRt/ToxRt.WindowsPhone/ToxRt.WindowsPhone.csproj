@@ -88,8 +88,8 @@
     <Compile Include="View\AllFriendsView.xaml.cs">
       <DependentUpon>AllFriendsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\FriendChatViewxaml.xaml.cs">
-      <DependentUpon>FriendChatViewxaml.xaml</DependentUpon>
+    <Compile Include="View\FriendChatView.xaml.cs">
+      <DependentUpon>FriendChatView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -117,7 +117,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\FriendChatViewxaml.xaml">
+    <Page Include="View\FriendChatView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

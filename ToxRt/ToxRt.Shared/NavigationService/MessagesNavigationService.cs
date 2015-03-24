@@ -67,8 +67,13 @@ namespace ToxRt.NavigationService
                 {
                     throw new ArgumentException(string.Format("No such page: {0} ", pageKey), "pageKey");
                 }
+#if WINDOWS_APP
+                var frame = GetDescendantFromName(Window.Current.Content, "MainFrame") as Frame;   
+#endif
+#if WINDOWS_PHONE_APP
+                var frame = Window.Current.Content as Frame;   
+#endif
 
-                var frame = GetDescendantFromName(Window.Current.Content, "MainFrame") as Frame;               
                 if (frame != null)
                 {
                     frame.Navigate(_pagesByKey[pageKey], parameter);
