@@ -1,6 +1,7 @@
 using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using ToxRt.NavigationService;
 using ToxRt.View;
@@ -32,6 +33,8 @@ namespace ToxRt.ViewModel
             SimpleIoc.Default.Register<IMessagesNavigationService>(() => navigationService);
         }
 
+
+        
 
 
         public MainViewModel Main

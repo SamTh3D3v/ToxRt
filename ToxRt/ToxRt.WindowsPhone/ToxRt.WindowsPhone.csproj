@@ -88,8 +88,14 @@
     <Compile Include="View\AllFriendsView.xaml.cs">
       <DependentUpon>AllFriendsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CreditView.xaml.cs">
+      <DependentUpon>CreditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FriendChatView.xaml.cs">
       <DependentUpon>FriendChatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GroupeChatView.xaml.cs">
+      <DependentUpon>GroupeChatView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -117,7 +123,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CreditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FriendChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GroupeChatView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

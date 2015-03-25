@@ -19,9 +19,9 @@ using ToxRt.Helpers;
 namespace ToxRt.View
 {
 
-    public sealed partial class SettingsView : BindablePage
+    public sealed partial class GroupeChatView : BindablePage
     {
-        public SettingsView()
+        public GroupeChatView()
         {
             this.InitializeComponent();
         }

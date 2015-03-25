@@ -1,0 +1,73 @@
+﻿<helpers:BindablePage
+    x:Class="ToxRt.View.FriendChatView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ToxRt.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:ToxRt.Helpers"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <helpers:BindablePage.DataContext>
+        <Binding Source="{StaticResource Locator}" Path="MessagesViewModel"></Binding>
+    </helpers:BindablePage.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="WhiteSmoke">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Height="75" Width="75" Source="{Binding Friend.PicSource}" Margin="10" Grid.Column="0" Grid.RowSpan="2"/>
+            <TextBlock Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="30"  Text="{Binding Friend.ScreenName}" Grid.Column="1" Grid.Row="0" />
+            <TextBlock Text="{Binding Friend.RealName}" Grid.Column="1" Grid.Row="1" Foreground="LightBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="25" />
+        </Grid>
+        <ListView Background="WhiteSmoke" Grid.Row="1" Margin="2" ItemsSource="{Binding ListOnscreenMessages}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="DodgerBlue" Grid.Column="0" Margin="5,5,10,5" Text="{Binding Sender}"/>
+                        <TextBlock Grid.Column="1" Margin="5" Foreground="Black" Text="{Binding MessageText}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox VerticalAlignment="Stretch" Background="White" Margin="2" Text="{Binding TextMessage,Mode=TwoWay}"  Grid.Column="0"/>
+            <Button Background="WhiteSmoke"  VerticalAlignment="Bottom" Command="{Binding SendCommand}" Grid.Column="1">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/send.png" Height="100"/>
+                        <StackPanel Orientation="Vertical" >
+                            <TextBlock Text="Send" VerticalAlignment="Center" Foreground="Black" />
+                            <TextBlock  Text="Message" FontSize="8" VerticalAlignment="Center" Foreground="Gray" />
+                        </StackPanel>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </Grid>
+</helpers:BindablePage>

@@ -13,18 +13,17 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 using ToxRt.Helpers;
 
 namespace ToxRt.View
 {
 
-    public sealed partial class SettingsView : BindablePage
+    public sealed partial class CreditView : BindablePage
     {
-        public SettingsView()
+        public CreditView()
         {
             this.InitializeComponent();
         }
-
     }
 }
