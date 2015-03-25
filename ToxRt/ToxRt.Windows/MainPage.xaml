@@ -25,7 +25,49 @@
             <core:InvokeCommandAction Command="{Binding LoadedCommand}"/>
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Load profile" Command="{Binding LoadProfileCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE188;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="Settings" Command="{Binding SettingsCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE115;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="Credit" Command="{Binding CreditCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE2C0;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Add Friend"   Command="{Binding AddFriendCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE1E2;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="Add groupe" Command="{Binding AddGroupeCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE125;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>              
+                <AppBarButton Label="Search"   Command="{Binding SearchFriendCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton  Label="Status"  Command="{Binding ChangeStatusCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon  FontFamily="Segoe UI Symbol" Foreground="{Binding UserStatus,Converter={StaticResource UserStatusToColorConverter}}"  Glyph="&#xE1D2;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>            
+        </CommandBar>
+    </Page.BottomAppBar>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width=".5*"/>            
