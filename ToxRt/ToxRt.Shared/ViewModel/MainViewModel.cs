@@ -159,7 +159,8 @@ namespace ToxRt.ViewModel
                     ?? (_addFriendCommand = new RelayCommand(
                     () =>
                     {
-                        
+#if WINDOWS_APP
+                        _innerNavigationService.NavigateTo();
                     }));
             }
         }

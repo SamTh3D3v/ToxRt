@@ -33,11 +33,11 @@ namespace ToxRt.ViewModel
 #endif
 
         }
-
-        //these navigation services ensure page navigation 
+        
 #if WINDOWS_APP
         private static INavigationService CreateGlobalWindowsNavigationService()
         {
+            //for page navigation 
             var navigationService = new GalaSoft.MvvmLight.Views.NavigationService();
             navigationService.Configure("CreditView", typeof(CreditView));
             navigationService.Configure("GroupeChatView", typeof(GroupeChatView));
@@ -48,6 +48,7 @@ namespace ToxRt.ViewModel
         }
         private static IMessagesNavigationService CreateInnerNavigationService()
         {
+            //for messages frame navigation 
             var navigationService = new MessagesNavigationService();
             navigationService.Configure("MessagesView", typeof(MessagesView));
             return navigationService;
@@ -57,6 +58,7 @@ namespace ToxRt.ViewModel
 #if WINDOWS_PHONE_APP
         private static INavigationService CreateGlobalWindowsPhoneNavigationService()
         {
+        //for page navigation 
             var navigationService = new GalaSoft.MvvmLight.Views.NavigationService();
             navigationService.Configure("CreditView", typeof(CreditView));
             navigationService.Configure("GroupeChatView", typeof(GroupeChatView));
@@ -82,7 +84,7 @@ namespace ToxRt.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MessagesViewModel>();
             }
-        }
+        }        
 
         public static void Cleanup()
         {
