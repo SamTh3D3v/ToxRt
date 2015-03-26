@@ -8,10 +8,10 @@
     xmlns:helpers="using:ToxRt.Helpers"
     mc:Ignorable="d">
     <helpers:BindablePage.DataContext>
-        <Binding Source="{StaticResource Locator}"></Binding>
+        <Binding Source="{StaticResource Locator}" Path="AddFriendViewModel"></Binding>
     </helpers:BindablePage.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<TextBlock Text="Add Friend View"></TextBlock>
+        <TextBlock Text="Add Friend View" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
     </Grid>
 </helpers:BindablePage>

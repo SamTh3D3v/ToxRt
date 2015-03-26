@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AllFriendsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreditViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\GoupeChatViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\GroupeChatSettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MessagesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SettingsViewModel.cs" />

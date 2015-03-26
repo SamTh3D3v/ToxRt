@@ -114,6 +114,9 @@
     <Compile Include="View\CreditView.xaml.cs">
       <DependentUpon>CreditView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\GroupeChatSettingsView.xaml.cs">
+      <DependentUpon>GroupeChatSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GroupeChatView.xaml.cs">
       <DependentUpon>GroupeChatView.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GroupeChatSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

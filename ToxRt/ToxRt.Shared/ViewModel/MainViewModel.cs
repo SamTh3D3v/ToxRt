@@ -183,7 +183,7 @@ namespace ToxRt.ViewModel
                     ?? (_changeStatusCommand = new RelayCommand(
                     () =>
                     {
-                        
+                        //Use a flyout here                        
                     }));
             }
         }
@@ -196,7 +196,7 @@ namespace ToxRt.ViewModel
                     ?? (_addGroupeCommand = new RelayCommand(
                     () =>
                     {
-                        
+                        InnerNavigationService.NavigateTo("GroupeChatSettingsView");                        
                     }));
             }
         }
@@ -222,7 +222,7 @@ namespace ToxRt.ViewModel
                     ?? (_settingsCommand = new RelayCommand(
                     () =>
                     {
-                        
+                        InnerNavigationService.NavigateTo("SettingsView");                        
                     }));
             }
         }
@@ -235,7 +235,7 @@ namespace ToxRt.ViewModel
                     ?? (_creditCommand = new RelayCommand(
                     () =>
                     {
-                        
+                        InnerNavigationService.NavigateTo("CreditView");    
                     }));
             }
         }

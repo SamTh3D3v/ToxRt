@@ -21,6 +21,7 @@ namespace ToxRt.ViewModel
             SimpleIoc.Default.Register<AllFriendsViewModel>();
             SimpleIoc.Default.Register<GoupeChatViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
+            SimpleIoc.Default.Register<GroupeChatSettingsViewModel>();
             SetupUpNavigationServices();
 
         }        
@@ -40,6 +41,8 @@ namespace ToxRt.ViewModel
         }
         
 #if WINDOWS_APP
+        //based on which navigation service you use, you can choose to view the page whith the side bar or navigate 
+        //en tirelly to it 
         private static INavigationService CreateGlobalWindowsNavigationService()
         {
             //for page navigation 
@@ -48,6 +51,7 @@ namespace ToxRt.ViewModel
             navigationService.Configure("GroupeChatView", typeof(GroupeChatView));
             navigationService.Configure("SettingsView", typeof(SettingsView));
             navigationService.Configure("MainPage", typeof(MainPage));
+            navigationService.Configure("GroupeChatSettingsView", typeof(GroupeChatSettingsView));
 
             return navigationService;
         }
@@ -57,6 +61,10 @@ namespace ToxRt.ViewModel
             var navigationService = new MessagesNavigationService();
             navigationService.Configure("MessagesView", typeof(MessagesView));
             navigationService.Configure("AddFriendView", typeof(AddFriendView));
+            navigationService.Configure("CreditView", typeof(CreditView));
+            navigationService.Configure("GroupeChatView", typeof(GroupeChatView));
+            navigationService.Configure("SettingsView", typeof(SettingsView));
+            navigationService.Configure("GroupeChatSettingsView", typeof(GroupeChatSettingsView));
             return navigationService;
 
         }
@@ -95,7 +103,7 @@ namespace ToxRt.ViewModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
-        public AddFriendViewModel AddFriendView
+        public AddFriendViewModel AddFriendViewModel
         {
             get
             {
@@ -128,7 +136,7 @@ namespace ToxRt.ViewModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]
-        public GoupeChatViewModel GoupeChatViewModel
+        public GoupeChatViewModel GroupeChatViewModel
         {
             get
             {
@@ -144,6 +152,16 @@ namespace ToxRt.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<SettingsViewModel>();
+            }
+        }     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public GroupeChatSettingsViewModel GroupeChatSettingsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<GroupeChatSettingsViewModel>();
             }
         }
         
