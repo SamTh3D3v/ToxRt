@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\UserStatusToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BindablePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\INavigable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\NavigableViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Friend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Profile.cs" />

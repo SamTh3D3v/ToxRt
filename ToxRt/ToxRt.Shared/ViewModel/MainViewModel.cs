@@ -20,12 +20,10 @@ namespace ToxRt.ViewModel
         Offline,
         DontInterrupt
     }
-    public class MainViewModel : ViewModelBase,INavigable
+    public class MainViewModel : NavigableViewModelBase
     {
         #region Fields        
         private String _localId;       
-        private IMessagesNavigationService _innerNavigationService;
-        private INavigationService _navigationService;
         private ObservableCollection<Friend> _listFriends;
         private Profile _currentProfile;
         private Tox _tox;
@@ -119,7 +117,7 @@ namespace ToxRt.ViewModel
             {
                 return _friendSelectedCommand
                     ?? (_friendSelectedCommand = new RelayCommand<Friend>(
-                    (friend) => _innerNavigationService.NavigateTo("MessagesView", friend)));
+                    (friend) => InnerNavigationService.NavigateTo("MessagesView", friend)));
             }
         }
         private RelayCommand _loadedCommand;
@@ -159,8 +157,7 @@ namespace ToxRt.ViewModel
                     ?? (_addFriendCommand = new RelayCommand(
                     () =>
                     {
-#if WINDOWS_APP
-                        _innerNavigationService.NavigateTo();
+                        InnerNavigationService.NavigateTo("AddFriendView");
                     }));
             }
         }
@@ -245,10 +242,10 @@ namespace ToxRt.ViewModel
 
         #endregion
         #region Ctors and Methods
-        public MainViewModel(INavigationService navigationService,IMessagesNavigationService innerNavigationService=null)
+        public MainViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService)
+            :base(navigationService,innerNavigationService)
         {
-            _innerNavigationService = innerNavigationService;
-            _navigationService = navigationService;
+            
             //for test purpuse only
             CurrentProfile=new Profile()
             {

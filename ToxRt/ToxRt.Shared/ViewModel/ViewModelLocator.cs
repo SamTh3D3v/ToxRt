@@ -51,6 +51,7 @@ namespace ToxRt.ViewModel
             //for messages frame navigation 
             var navigationService = new MessagesNavigationService();
             navigationService.Configure("MessagesView", typeof(MessagesView));
+            navigationService.Configure("AddFriendView", typeof(AddFriendView));
             return navigationService;
 
         }
@@ -84,7 +85,8 @@ namespace ToxRt.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MessagesViewModel>();
             }
-        }        
+        }
+        
 
         public static void Cleanup()
         {
