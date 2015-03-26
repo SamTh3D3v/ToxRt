@@ -16,6 +16,7 @@ namespace ToxRt.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MessagesViewModel>();
+            SetupUpNavigationServices();
 
         }        
         private static void SetupUpNavigationServices()

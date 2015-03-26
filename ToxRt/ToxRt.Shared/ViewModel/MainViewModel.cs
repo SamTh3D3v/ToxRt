@@ -24,7 +24,8 @@ namespace ToxRt.ViewModel
     {
         #region Fields        
         private String _localId;       
-        private IMessagesNavigationService _navigationService;
+        private IMessagesNavigationService _innerNavigationService;
+        private INavigationService _navigationService;
         private ObservableCollection<Friend> _listFriends;
         private Profile _currentProfile;
         private Tox _tox;
@@ -118,10 +119,7 @@ namespace ToxRt.ViewModel
             {
                 return _friendSelectedCommand
                     ?? (_friendSelectedCommand = new RelayCommand<Friend>(
-                    (friend) =>
-                    {
-                        _navigationService.NavigateTo("MessagesView",friend);
-                    }));
+                    (friend) => _innerNavigationService.NavigateTo("MessagesView", friend)));
             }
         }
         private RelayCommand _loadedCommand;
@@ -246,8 +244,9 @@ namespace ToxRt.ViewModel
 
         #endregion
         #region Ctors and Methods
-        public MainViewModel(IMessagesNavigationService navigationService)
+        public MainViewModel(INavigationService navigationService,IMessagesNavigationService innerNavigationService=null)
         {
+            _innerNavigationService = innerNavigationService;
             _navigationService = navigationService;
             //for test purpuse only
             CurrentProfile=new Profile()
