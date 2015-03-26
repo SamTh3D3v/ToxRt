@@ -8,7 +8,7 @@ using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    class AddFriendViewModel:NavigableViewModelBase
+    public class AddFriendViewModel:NavigableViewModelBase
     {
         #region Fields        
         

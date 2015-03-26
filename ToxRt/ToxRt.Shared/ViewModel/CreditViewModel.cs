@@ -7,7 +7,7 @@ using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    class CreditViewModel:NavigableViewModelBase
+    public class CreditViewModel:NavigableViewModelBase
     {
         #region Fields        
         

@@ -16,6 +16,11 @@ namespace ToxRt.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MessagesViewModel>();
+            SimpleIoc.Default.Register<AddFriendViewModel>();
+            SimpleIoc.Default.Register<CreditViewModel>();
+            SimpleIoc.Default.Register<AllFriendsViewModel>();
+            SimpleIoc.Default.Register<GoupeChatViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
             SetupUpNavigationServices();
 
         }        
@@ -84,6 +89,61 @@ namespace ToxRt.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MessagesViewModel>();
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public AddFriendViewModel AddFriendView
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddFriendViewModel>();
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public CreditViewModel CreditViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CreditViewModel>();
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public AllFriendsViewModel AllFriendsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AllFriendsViewModel>();
+            }
+        }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public GoupeChatViewModel GoupeChatViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<GoupeChatViewModel>();
+            }
+        }
+     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public SettingsViewModel SettingsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SettingsViewModel>();
             }
         }
         

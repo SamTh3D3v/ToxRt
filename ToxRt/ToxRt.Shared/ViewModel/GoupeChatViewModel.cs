@@ -7,7 +7,7 @@ using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    class GoupeChatViewModel:NavigableViewModelBase
+    public class GoupeChatViewModel:NavigableViewModelBase
     {
         #region Fields        
         

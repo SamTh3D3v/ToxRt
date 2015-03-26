@@ -7,7 +7,7 @@ using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    class SettingsViewModel:NavigableViewModelBase
+    public class SettingsViewModel:NavigableViewModelBase
     {
        #region Fields        
         
