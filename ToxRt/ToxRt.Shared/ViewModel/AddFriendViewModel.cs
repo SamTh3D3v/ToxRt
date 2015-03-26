@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Views;
 using ToxRt.Helpers;
+using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    class AddFriendViewModel:ViewModelBase, INavigable
+    class AddFriendViewModel:NavigableViewModelBase
     {
         #region Fields        
         
@@ -18,19 +20,10 @@ namespace ToxRt.ViewModel
 
         #endregion
         #region Ctors and Methods
-        public void Activate(object parameter)
-        {
-        }
 
-        public void Deactivate(object parameter)
+        public AddFriendViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService) : base(navigationService, innerNavigationService)
         {
-        }
-
-        public void GoBack()
-        {
-        }
-        #endregion
-        
-      
+        }      
+        #endregion              
     }
 }

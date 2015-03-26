@@ -4,16 +4,16 @@ using System.Collections.ObjectModel;
 using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using ToxRt.Helpers;
 using ToxRt.Model;
 using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    public class MessagesViewModel : ViewModelBase,INavigable
+    public class MessagesViewModel : NavigableViewModelBase
     {
-        #region Fields
-        private IMessagesNavigationService _navigationService;
+        #region Fields        
 
         #endregion
         #region Properties
@@ -93,9 +93,9 @@ namespace ToxRt.ViewModel
         #endregion
         #region Ctors and Methods
 
-        public MessagesViewModel(IMessagesNavigationService navigationService)
-        {
-            _navigationService = navigationService;            
+        public MessagesViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService)
+            : base(navigationService, innerNavigationService)
+        {                       
             //For test purpus only
             ListOnscreenMessages = new ObservableCollection<Message>()
             {
@@ -124,17 +124,5 @@ namespace ToxRt.ViewModel
 
         #endregion
 
-        public void Activate(object parameter)
-        {
-            Friend = parameter as Friend;
-        }
-
-        public void Deactivate(object parameter)
-        {            
-        }
-
-        public void GoBack()
-        {            
-        }
     }
 }
