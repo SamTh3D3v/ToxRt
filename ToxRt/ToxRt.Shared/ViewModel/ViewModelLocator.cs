@@ -7,36 +7,64 @@ using ToxRt.NavigationService;
 using ToxRt.View;
 
 namespace ToxRt.ViewModel
-{    
+{
     public class ViewModelLocator
     {
- 
+
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MessagesViewModel>();
 
-            SetupMessagesNavigation();
+        }        
+        private static void SetupUpNavigationServices()
+        {
+#if WINDOWS_APP
+            var innerNavigationService = CreateInnerNavigationService();
+            var navigationservice = CreateGlobalWindowsNavigationService();
+            SimpleIoc.Default.Register<INavigationService>(() => navigationservice);
+            SimpleIoc.Default.Register<IMessagesNavigationService>(() => innerNavigationService);
+#endif
+#if WINDOWS_PHONE_APP            
+            var navigationservice = CreateGlobalWindowsPhoneNavigationService();
+            SimpleIoc.Default.Register<INavigationService>(() => navigationservice);            
+#endif
 
         }
 
-        private static void SetupMessagesNavigation()
+        //these navigation services ensure page navigation 
+#if WINDOWS_APP
+        private static INavigationService CreateGlobalWindowsNavigationService()
+        {
+            var navigationService = new GalaSoft.MvvmLight.Views.NavigationService();
+            navigationService.Configure("CreditView", typeof(CreditView));
+            navigationService.Configure("GroupeChatView", typeof(GroupeChatView));
+            navigationService.Configure("SettingsView", typeof(SettingsView));
+            navigationService.Configure("MainPage", typeof(MainPage));
+
+            return navigationService;
+        }
+        private static IMessagesNavigationService CreateInnerNavigationService()
         {
             var navigationService = new MessagesNavigationService();
-#if WINDOWS_APP
-            navigationService.Configure("MessagesView",typeof(MessagesView));
+            navigationService.Configure("MessagesView", typeof(MessagesView));
+            return navigationService;
+
+        }
 #endif
 #if WINDOWS_PHONE_APP
-            navigationService.Configure("MessagesView", typeof(FriendChatView));     
-#endif             
-            SimpleIoc.Default.Register<IMessagesNavigationService>(() => navigationService);
+        private static INavigationService CreateGlobalWindowsPhoneNavigationService()
+        {
+            var navigationService = new GalaSoft.MvvmLight.Views.NavigationService();
+            navigationService.Configure("CreditView", typeof(CreditView));
+            navigationService.Configure("GroupeChatView", typeof(GroupeChatView));
+            navigationService.Configure("SettingsView", typeof(SettingsView));
+            navigationService.Configure("MainPage", typeof(MainPage));
+            navigationService.Configure("AllFriendsView", typeof(AllFriendsView));
+            return navigationService;
         }
-
-
-        
-
-
+#endif
         public MainViewModel Main
         {
             get
@@ -54,7 +82,7 @@ namespace ToxRt.ViewModel
                 return ServiceLocator.Current.GetInstance<MessagesViewModel>();
             }
         }
-        
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
