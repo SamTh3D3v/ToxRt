@@ -26,8 +26,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)NavigationService\MessagesNavigationService.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AddFriendViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AllFriendsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreditViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\GoupeChatViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MessagesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
