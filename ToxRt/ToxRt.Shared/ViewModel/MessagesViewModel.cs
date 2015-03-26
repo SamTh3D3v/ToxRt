@@ -124,5 +124,10 @@ namespace ToxRt.ViewModel
 
         #endregion
 
+        public override void Activate(object parameter)
+        {
+            Friend = parameter as Friend;            
+        }
+        
     }
 }
