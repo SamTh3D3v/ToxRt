@@ -12,6 +12,31 @@
     </helpers:BindablePage.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Settings View" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <Hub Header="User Settings" Orientation="Vertical" >
+            <HubSection MinWidth="600" Header="Latest" >
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock Text="" 
+                           Style="{ThemeResource BodyTextBlockStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection Header="Devices and display" IsHeaderInteractive="True"  
+                Background="#222222" >
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection Header="General" IsHeaderInteractive="True" 
+                Background="#444444">
+                <DataTemplate>
+                    <StackPanel>
+                       
+                    </StackPanel>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
     </Grid>
 </helpers:BindablePage>
