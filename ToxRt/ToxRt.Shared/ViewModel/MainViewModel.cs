@@ -200,6 +200,19 @@ namespace ToxRt.ViewModel
                     }));
             }
         }
+        private RelayCommand _removeSelectedFriendsCommand;
+        public RelayCommand RemoveSelectedFriendsCommand
+        {
+            get
+            {
+                return _removeSelectedFriendsCommand
+                    ?? (_removeSelectedFriendsCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
+        }
         private RelayCommand _loadProfileCommand;
         public RelayCommand LoadProfileCommand
         {
