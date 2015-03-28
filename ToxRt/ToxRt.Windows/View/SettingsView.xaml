@@ -12,12 +12,25 @@
     </helpers:BindablePage.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Hub Header="User Settings" Orientation="Vertical" >
-            <HubSection MinWidth="600" Header="Latest" >
+        <Hub Header="Settings" Orientation="Horizontal" >
+            <HubSection MinWidth="600" Header="User Details" >
                 <DataTemplate>
                     <Grid>
-                        <TextBlock Text="" 
-                           Style="{ThemeResource BodyTextBlockStyle}" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="75"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="0" Grid.Column="0" Text="Name"></TextBlock>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="1" Grid.Column="0" Text="Status Message"/>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="ToxID"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="2"></TextBox>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2" TextWrapping="Wrap"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" TextWrapping="Wrap"/>
                     </Grid>
                 </DataTemplate>
             </HubSection>
@@ -25,16 +38,95 @@
             <HubSection Header="Devices and display" IsHeaderInteractive="True"  
                 Background="#222222" >
                 <DataTemplate>
-                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="250"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="0" Grid.Column="0" Text="Audio Input"/>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="1" Grid.Column="0" Text="Audio Output"/>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="Vieo Output"/>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="3" Grid.Column="0" Text="DPI"/>
+                        <TextBlock Margin="10" HorizontalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" FontSize="20"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Text="Preview"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="2"></TextBox>
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2"></TextBox>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2"></TextBox>
+                        <ComboBox Grid.Row="3" Grid.Column="1" Margin="2"></ComboBox>
+                        <Grid Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>                                
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0">
+                                <Button.Content>
+                                    <StackPanel Orientation="Vertical">
+                                        <Image Source="../Images/phone_light.png" Height="50"/>
+                                        <TextBlock Text="audio" VerticalAlignment="Center"  />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Column="1">
+                                <Button.Content>
+                                    <StackPanel Orientation="Vertical">
+                                        <Image Source="../Images/camera_light.png" Height="50"/>
+                                        <TextBlock Text="video" VerticalAlignment="Center"  />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </DataTemplate>
             </HubSection>
 
-            <HubSection Header="General" IsHeaderInteractive="True" 
+            <HubSection Header="General" IsHeaderInteractive="True"  
                 Background="#444444">
                 <DataTemplate>
-                    <StackPanel>
-                       
-                    </StackPanel>
+                    <HubSection Header="Networking "  IsHeaderInteractive="True"  Background="Gray">
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="250"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="10" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="0" 
+                                           Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="20"  Text="Proxy"></TextBlock>
+                                <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="1" Grid.Column="0" Text="State"/>
+                                <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="IP"/>
+                                <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="3" Grid.Column="0" Text="PORT"/>
+                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="2"></ComboBox>
+                                <TextBox Grid.Row="2" Grid.Column="1" Margin="2"></TextBox>
+                                <TextBox Grid.Row="3" Grid.Column="1" Margin="2"></TextBox>
+                                <TextBlock Margin="10" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="4" 
+                                           Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="20"  Text="More"></TextBlock>
+                                <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="5" Grid.Column="0" Text="IPv6"/>
+                                <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="6" Grid.Column="0" Text="UPD"/>
+
+                                <TextBox Grid.Row="5" Grid.Column="1" Margin="2"></TextBox>
+                                <TextBox Grid.Row="6" Grid.Column="1" Margin="2"></TextBox>
+
+                            </Grid>
+                        </DataTemplate>
+                    </HubSection>
                 </DataTemplate>
             </HubSection>
         </Hub>
