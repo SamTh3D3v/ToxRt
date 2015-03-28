@@ -235,7 +235,7 @@ namespace ToxRt.ViewModel
                     ?? (_settingsCommand = new RelayCommand(
                     () =>
                     {
-                        InnerNavigationService.NavigateTo("SettingsView");                        
+                        NavigationService.NavigateTo("SettingsView");                        
                     }));
             }
         }

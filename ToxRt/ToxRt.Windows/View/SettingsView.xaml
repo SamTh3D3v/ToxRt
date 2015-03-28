@@ -92,9 +92,9 @@
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="Vieo Output"/>
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="3" Grid.Column="0" Text="DPI"/>
                         <TextBlock Margin="10" HorizontalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" FontSize="20"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Text="Preview"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Margin="2"></TextBox>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="2"></TextBox>
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2"></TextBox>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Margin="2"></ComboBox>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Margin="2"></ComboBox>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="2"></ComboBox>
                         <ComboBox Grid.Row="3" Grid.Column="1" Margin="2"></ComboBox>
                         <Grid Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
