@@ -11,18 +11,8 @@ namespace ToxRt.Model
         private bool _loggin = false;
         private bool _audioNotifications = false;
         private bool _closeToTray = false;
-        private ObservableCollection<String> _themes = new ObservableCollection<string>()
-        {
-            "Default" //tmp
-        };
-        private ObservableCollection<string> _languages = new ObservableCollection<string>()
-        {
-            "English" //tmp
-        };
-        private ObservableCollection<String> _audioInput;
-        private ObservableCollection<String> _audioOutput;
-        private ObservableCollection<String> _videoOutput;
-        private ObservableCollection<String> _dpi;
+        private String _profileTheme = "Mytheme"; //tmp
+        private String _profileLanguage = "English"; //tmp
         #endregion
         #region Properties
         public bool Loggin
@@ -78,115 +68,44 @@ namespace ToxRt.Model
                 _closeToTray = value;
                 OnPropertyChanged();
             }
-        }      
-        public ObservableCollection<String> Themes
+        }
+        public String ProfileTheme
         {
             get
             {
-                return _themes;
+                return _profileTheme;
             }
 
             set
             {
-                if (_themes == value)
+                if (_profileTheme == value)
                 {
                     return;
                 }
 
-                _themes = value;
+                _profileTheme = value;
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<string> Languages
+        public String ProfileLanguage
         {
             get
             {
-                return _languages;
+                return _profileLanguage;
             }
 
             set
             {
-                if (_languages == value)
+                if (_profileLanguage == value)
                 {
                     return;
                 }
 
-                _languages = value;
-                OnPropertyChanged();
-            }
-        }   
-        public ObservableCollection<String> AudioInput
-        {
-            get
-            {
-                return _audioInput;
-            }
-
-            set
-            {
-                if (_audioInput == value)
-                {
-                    return;
-                }
-
-                _audioInput = value;
+                _profileLanguage = value;
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<String> AudioOutput
-        {
-            get
-            {
-                return _audioOutput;
-            }
-
-            set
-            {
-                if (_audioOutput == value)
-                {
-                    return;
-                }
-
-                _audioOutput = value;
-                OnPropertyChanged();
-            }
-        }
-        public ObservableCollection<String> VideoOutput
-        {
-            get
-            {
-                return _videoOutput;
-            }
-
-            set
-            {
-                if (_videoOutput == value)
-                {
-                    return;
-                }
-
-                _videoOutput = value;
-                OnPropertyChanged();
-            }
-        }       
-        public ObservableCollection<String> Dpi
-        {
-            get
-            {
-                return _dpi;
-            }
-
-            set
-            {
-                if (_dpi == value)
-                {
-                    return;
-                }
-
-                _dpi = value;
-                OnPropertyChanged();
-            }
-        }
+       
         #endregion
     }
 }

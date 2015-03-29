@@ -31,9 +31,9 @@
                                     <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="0" Grid.Column="0" Text="Name"></TextBlock>
                                     <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="1" Grid.Column="0" Text="Status Message"/>
                                     <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="ToxID"/>
-                                    <TextBox Grid.Row="0" Grid.Column="1" Margin="2"></TextBox>
-                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" TextWrapping="Wrap"/>
-                                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" TextWrapping="Wrap"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Text="{Binding CurrentProfile.ScreenName,Mode=TwoWay}"></TextBox>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" TextWrapping="Wrap" Text="{Binding CurrentProfile.StatusMessage,Mode=TwoWay}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" TextWrapping="Wrap" Text="{Binding CurrentProfile.ToxId,Mode=TwoWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </HubSection>
@@ -56,11 +56,11 @@
                                     <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="Close To Tray"/>
                                     <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="3" Grid.Column="0" Text="Theme"/>
                                     <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="4" Grid.Column="0" Text="Language"/>
-                                    <CheckBox Grid.Row="0" Grid.Column="1" Margin="2"></CheckBox>
-                                    <CheckBox Grid.Row="1" Grid.Column="1" Margin="2" />
-                                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="2" />
-                                    <ComboBox Grid.Row="3" Grid.Column="1" Margin="2" />
-                                    <ComboBox Grid.Row="4" Grid.Column="1" Margin="2" />
+                                    <CheckBox Grid.Row="0" Grid.Column="1" Margin="2" IsChecked="{Binding CurrentProfile.Loggin,Mode=TwoWay}"/>
+                                    <CheckBox Grid.Row="1" Grid.Column="1" Margin="2" IsChecked="{Binding CurrentProfile.AudioNotifications,Mode=TwoWay}"/>
+                                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="2" IsChecked="{Binding CurrentProfile.CloseToTray,Mode=TwoWay}"/>
+                                    <ComboBox Grid.Row="3" Grid.Column="1" Margin="2" ItemsSource="{Binding Themes}" SelectedItem="{Binding CurrentProfile.ProfileTheme}"/>
+                                    <ComboBox Grid.Row="4" Grid.Column="1" Margin="2" ItemsSource="{Binding Languages}" SelectedItem="{Binding CurrentProfile.ProfileLanguage}"/>
                                 </Grid>
                             </DataTemplate>
                         </HubSection>
@@ -89,19 +89,19 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="0" Grid.Column="0" Text="Audio Input"/>
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="1" Grid.Column="0" Text="Audio Output"/>
-                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="Vieo Output"/>
+                        <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="Video Output"/>
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="3" Grid.Column="0" Text="DPI"/>
                         <TextBlock Margin="10" HorizontalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" FontSize="20"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  Text="Preview"/>
-                        <ComboBox Grid.Row="0" Grid.Column="1" Margin="2"></ComboBox>
-                        <ComboBox Grid.Row="1" Grid.Column="1" Margin="2"></ComboBox>
-                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="2"></ComboBox>
-                        <ComboBox Grid.Row="3" Grid.Column="1" Margin="2"></ComboBox>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Margin="2" ItemsSource="{Binding AudioInput}" SelectedItem="{Binding SelectedAudioInput}"></ComboBox>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Margin="2" ItemsSource="{Binding AudioOutput}" SelectedItem="{Binding SelectedAudioOutput}"></ComboBox>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="2" ItemsSource="{Binding VideoOutput}" SelectedItem="{Binding SelectedVideoInput}"></ComboBox>
+                        <ComboBox Grid.Row="3" Grid.Column="1" Margin="2" ItemsSource="{Binding Dpi}" SelectedItem="{Binding SelectedDpi}"></ComboBox>
                         <Grid Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0">
+                            <Button Grid.Column="0" Command="{Binding AudioPreviewCommand}">
                                 <Button.Content>
                                     <StackPanel Orientation="Vertical">
                                         <Image Source="../Images/phone_light.png" Height="50"/>
@@ -109,7 +109,7 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <Button Grid.Column="1">
+                            <Button Grid.Column="1" Command="{Binding VideoPreviewCommand}">
                                 <Button.Content>
                                     <StackPanel Orientation="Vertical">
                                         <Image Source="../Images/camera_light.png" Height="50"/>
@@ -146,16 +146,16 @@
                                 <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="1" Grid.Column="0" Text="State"/>
                                 <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="IP"/>
                                 <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="3" Grid.Column="0" Text="PORT"/>
-                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="2"></ComboBox>
-                                <TextBox Grid.Row="2" Grid.Column="1" Margin="2"></TextBox>
-                                <TextBox Grid.Row="3" Grid.Column="1" Margin="2"></TextBox>
+                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="2" ItemsSource="{Binding ProxyState}" SelectedItem="{Binding SelectedProxyState}"></ComboBox>
+                                <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Text="{Binding CurrentProxy.IpAdress}"></TextBox>
+                                <TextBox Grid.Row="3" Grid.Column="1" Margin="2" Text="{Binding CurrentProxy.PortNumber}"></TextBox>
                                 <TextBlock Margin="10" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="4" 
                                            Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="20"  Text="More"></TextBlock>
                                 <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="5" Grid.Column="0" Text="IPv6"/>
                                 <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="6" Grid.Column="0" Text="UPD"/>
 
-                                <TextBox Grid.Row="5" Grid.Column="1" Margin="2"></TextBox>
-                                <TextBox Grid.Row="6" Grid.Column="1" Margin="2"></TextBox>
+                                <CheckBox Grid.Row="5" Grid.Column="1" Margin="2" IsChecked="{Binding Ipv6Enabled,Mode=TwoWay}"></CheckBox>
+                                <CheckBox Grid.Row="6" Grid.Column="1" Margin="2" IsChecked="{Binding UpdEnabled,Mode=TwoWay}"></CheckBox>
 
                             </Grid>
                         </DataTemplate>

@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Friend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Profile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Proxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NavigationService\IMessagesNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NavigationService\MessagesNavigationService.cs">
       <SubType>Code</SubType>
