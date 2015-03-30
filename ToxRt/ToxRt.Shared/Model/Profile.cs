@@ -11,6 +11,7 @@ namespace ToxRt.Model
         private bool _loggin = false;
         private bool _audioNotifications = false;
         private bool _closeToTray = false;
+        private ObservableCollection<Friend> _friends;
         private String _profileTheme = "Mytheme"; //tmp
         private String _profileLanguage = "English"; //tmp
         #endregion
@@ -104,8 +105,25 @@ namespace ToxRt.Model
                 _profileLanguage = value;
                 OnPropertyChanged();
             }
+        }        
+        public ObservableCollection<Friend> Friends
+        {
+            get
+            {
+                return _friends;
+            }
+
+            set
+            {
+                if (_friends == value)
+                {
+                    return;
+                }
+
+                _friends = value;
+                OnPropertyChanged();
+            }
         }
-       
         #endregion
     }
 }

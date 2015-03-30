@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -43,6 +45,7 @@ namespace ToxRt
 #endif
 
             Frame rootFrame = Window.Current.Content as Frame;
+            await CopyDatabase();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -120,6 +123,26 @@ namespace ToxRt
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+        private async Task CopyDatabase()
+        {
+            bool isDatabaseExisting = false;
+            try
+            {
+                StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("tox_messages.sqlite"); //To saved in %APPDATA%/tox/
+                isDatabaseExisting = true;
+            }
+            catch
+            {
+                isDatabaseExisting = false;
+            }
+
+            if (!isDatabaseExisting)
+            {
+                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("tox_messages.sqlite");
+                await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
+            }
+
         }
     }
 }

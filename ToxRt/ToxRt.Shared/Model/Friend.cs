@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -108,10 +109,15 @@ namespace ToxRt.Model
                 OnPropertyChanged();
             }
         }
+        public ObservableCollection<Message> Messages { get; set; }
         #endregion
         #region Commands        
         #endregion
         #region Ctors and Methods
+        public Friend()
+        {
+            Messages=new ObservableCollection<Message>();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
