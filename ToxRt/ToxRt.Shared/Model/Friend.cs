@@ -18,7 +18,9 @@ namespace ToxRt.Model
         private string _toxId;
 
         #endregion
-        #region Properties        
+        #region Properties  
+
+        public long FriendId { get; set; }
         public string RealName
         {
             get
@@ -109,7 +111,9 @@ namespace ToxRt.Model
                 OnPropertyChanged();
             }
         }
+        //Navigation properties
         public ObservableCollection<Message> Messages { get; set; }
+        public Profile Profile { get; set; }
         #endregion
         #region Commands        
         #endregion

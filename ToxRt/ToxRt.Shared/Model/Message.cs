@@ -8,7 +8,7 @@ namespace ToxRt.Model
     {
         #region Properties
 
-        //The Sender is used as a navigation property
+        public long MessageId { get; set; }        
         public Friend Sender { get; set; }    
         public String MessageText { get; set; }
         public DateTime MessageDate { get; set; }

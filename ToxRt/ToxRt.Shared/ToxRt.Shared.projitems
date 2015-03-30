@@ -20,7 +20,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BindablePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\NavigableViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\DataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Friend.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\IDataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Profile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Proxy.cs" />
