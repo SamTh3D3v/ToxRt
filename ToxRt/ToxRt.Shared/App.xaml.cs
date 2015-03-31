@@ -129,7 +129,7 @@ namespace ToxRt
             bool isDatabaseExisting = false;
             try
             {
-                StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("tox_messages.sqlite"); //To saved in %APPDATA%/tox/
+                StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync(@"\Data\tox_messages.db"); //To saved in %APPDATA%/tox/
                 isDatabaseExisting = true;
             }
             catch
@@ -139,7 +139,7 @@ namespace ToxRt
 
             if (!isDatabaseExisting)
             {
-                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("tox_messages.sqlite");
+                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync(@"\Data\tox_messages.db");
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
             }
 
