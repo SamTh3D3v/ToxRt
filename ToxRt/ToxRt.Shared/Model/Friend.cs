@@ -15,12 +15,12 @@ namespace ToxRt.Model
         private string _screenName;
         private string _picSource;
         private string _statusMessage;
-        private string _toxId;
-
+        private string _toxId;      
+        private int _profileId ;
         #endregion
         #region Properties  
 
-        public long FriendId { get; set; }
+        public int FriendId { get; set; }
         public string RealName
         {
             get
@@ -108,6 +108,24 @@ namespace ToxRt.Model
                 }
 
                 _toxId = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ProfileId
+        {
+            get
+            {
+                return _profileId;
+            }
+
+            set
+            {
+                if (_profileId == value)
+                {
+                    return;
+                }
+
+                _profileId = value;
                 OnPropertyChanged();
             }
         }

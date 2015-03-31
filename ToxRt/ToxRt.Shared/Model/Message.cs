@@ -8,7 +8,7 @@ namespace ToxRt.Model
     {
         #region Properties
 
-        public long MessageId { get; set; }        
+        public int MessageId { get; set; }        
         public Friend Sender { get; set; }    
         public String MessageText { get; set; }
         public DateTime MessageDate { get; set; }
