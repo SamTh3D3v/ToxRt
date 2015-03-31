@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using SQLitePCL;
 
 namespace ToxRt.Model
@@ -9,7 +10,7 @@ namespace ToxRt.Model
     public class DataService:IDataService
     {
         #region Fields
-        private readonly SQLiteConnection _connection = new SQLiteConnection(@"\Data\tox_messages.sqlite"); //tmp
+        private readonly SQLiteConnection _connection = new SQLiteConnection("tox_messages.db"); //tmp        
         #endregion
         #region Properties
 
@@ -28,7 +29,7 @@ namespace ToxRt.Model
                         MessageId = (int)statement[0],
                         Sender = GetFriendByFriendId((long)statement[1]),
                         MessageText = (string)statement[2],
-                        MessageDate = (DateTime)statement[0]
+                        MessageDate = (DateTime)statement[3]
                     });
                 }
             }

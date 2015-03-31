@@ -69,6 +69,16 @@
                     <AppBarButton.Icon>
                         <FontIcon  FontFamily="Segoe UI Symbol" Foreground="{Binding UserStatus,Converter={StaticResource UserStatusToColorConverter}}"  Glyph="&#xE1D2;" />
                     </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <StackPanel>
+                                <RadioButton Content="Online" GroupName="Rb_Status" IsChecked="{Binding UserStatus,Converter={StaticResource OnlineToIsCheckedConverter},Mode=TwoWay}"/>
+
+                                <RadioButton Content="Offline" GroupName="Rb_Status" IsChecked="{Binding UserStatus,Converter={StaticResource OfflineToIsCheckedConverter},Mode=TwoWay}"/>
+                                <RadioButton Content="Away" GroupName="Rb_Status" IsChecked="{Binding UserStatus,Converter={StaticResource AwayToIsCheckedConverter},Mode=TwoWay}"/>
+                            </StackPanel>
+                        </Flyout>
+                    </AppBarButton.Flyout>
                 </AppBarButton>
             </CommandBar.SecondaryCommands>            
         </CommandBar>

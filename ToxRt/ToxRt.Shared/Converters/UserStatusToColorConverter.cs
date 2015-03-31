@@ -17,16 +17,16 @@ namespace ToxRt.Converters
             switch ((Status)value)
             {
                 case Status.Online:
-                    return Colors.GreenYellow;
+                    return new SolidColorBrush(Colors.GreenYellow);
                     break;
                 case Status.Offline:
-                    return Colors.Red;
+                    return new SolidColorBrush(Colors.Red);
                     break;
-                case Status.DontInterrupt:
-                    return Colors.Orange;
+                case Status.Away:
+                    return new SolidColorBrush(Colors.Orange);
                     break;
                 default:
-                    return Colors.GreenYellow;
+                    return new SolidColorBrush(Colors.GreenYellow);
 
             }
 

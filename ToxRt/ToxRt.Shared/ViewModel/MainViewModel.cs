@@ -18,7 +18,7 @@ namespace ToxRt.ViewModel
     {
         Online,
         Offline,
-        DontInterrupt
+        Away
     }
     public class MainViewModel : NavigableViewModelBase
     {

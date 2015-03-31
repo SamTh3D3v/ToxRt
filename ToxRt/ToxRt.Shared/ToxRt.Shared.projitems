@@ -17,6 +17,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\UserStatusToColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\OnlineToIsCheckedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BindablePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\NavigableViewModelBase.cs" />

@@ -35,7 +35,7 @@ namespace ToxRt
         }
 
         
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -78,7 +78,7 @@ namespace ToxRt
                         this.transitions.Add(c);
                     }
                 }
-
+                1
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += this.RootFrame_FirstNavigated;
 #endif
@@ -128,8 +128,8 @@ namespace ToxRt
         {
             bool isDatabaseExisting = false;
             try
-            {
-                StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync(@"\Data\tox_messages.db"); //To saved in %APPDATA%/tox/
+            {               
+                StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("tox_messages.db"); //needs to be saved in %APPDATA%/tox/
                 isDatabaseExisting = true;
             }
             catch
@@ -139,7 +139,8 @@ namespace ToxRt
 
             if (!isDatabaseExisting)
             {
-                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync(@"\Data\tox_messages.db");
+                var folder = Package.Current.InstalledLocation;                
+                StorageFile databaseFile = await folder.GetFileAsync(@"\Data\tox_messages.db");
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
             }
 

@@ -7,4 +7,7 @@
     <SolidColorBrush x:Key="ThemeFontBrush" Color="Black"/>        
     <converters:ListViewItemClickedConverter x:Key="ListViewItemClickedConverter"/>
     <converters:UserStatusToColorConverter x:Key="UserStatusToColorConverter"/>
+    <converters:OnlineToIsCheckedConverter x:Key="OnlineToIsCheckedConverter"/>
+    <converters:OfflineToIsCheckedConverter x:Key="OfflineToIsCheckedConverter"/>
+    <converters:AwayToIsCheckedConverter x:Key="AwayToIsCheckedConverter"/>
 </ResourceDictionary>
