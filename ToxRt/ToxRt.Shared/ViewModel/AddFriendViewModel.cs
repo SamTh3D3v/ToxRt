@@ -4,6 +4,7 @@ using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using ToxRt.Helpers;
+using ToxRt.Model;
 using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
@@ -21,7 +22,7 @@ namespace ToxRt.ViewModel
         #endregion
         #region Ctors and Methods
 
-        public AddFriendViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService) : base(navigationService, innerNavigationService)
+        public AddFriendViewModel(INavigationService navigationService,IDataService dataService, IMessagesNavigationService innerNavigationService) : base(navigationService,dataService, innerNavigationService)
         {
         }      
         #endregion              

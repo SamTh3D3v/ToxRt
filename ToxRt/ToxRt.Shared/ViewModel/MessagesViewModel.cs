@@ -93,8 +93,8 @@ namespace ToxRt.ViewModel
         #endregion
         #region Ctors and Methods
 
-        public MessagesViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService)
-            : base(navigationService, innerNavigationService)
+        public MessagesViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
+            : base(navigationService,dataService, innerNavigationService)
         {                       
             //For test purpus only
             ListOnscreenMessages = new ObservableCollection<Message>()

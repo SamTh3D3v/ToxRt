@@ -359,8 +359,8 @@ namespace ToxRt.ViewModel
         #endregion
         #region Ctors and Methods
 
-        public SettingsViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService)
-            : base(navigationService, innerNavigationService)
+        public SettingsViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
+            : base(navigationService,dataService, innerNavigationService)
         {
         }      
         #endregion 

@@ -18,7 +18,7 @@ namespace ToxRt.Model
         public async Task<List<Message>> GetMessagesByFriendId(long friendId)
         {
             var messeges = new List<Message>();
-            using (var statement = _connection.Prepare("SELECT * FROM MESSAGES WHERE SenderID= ?")) //tmp
+            using (var statement = _connection.Prepare("SELECT * FROM MESSAGES WHERE SenderID= ?")) 
             {
                 statement.Bind(1, friendId);
                 while (statement.Step() == SQLiteResult.ROW)

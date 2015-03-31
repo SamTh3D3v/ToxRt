@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight.Views;
 using ToxRt.Helpers;
+using ToxRt.Model;
 using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
@@ -20,8 +21,8 @@ namespace ToxRt.ViewModel
         #endregion
         #region Ctors and Methods
 
-        public GroupeChatSettingsViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService)
-            : base(navigationService, innerNavigationService)
+        public GroupeChatSettingsViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
+            : base(navigationService,dataService, innerNavigationService)
         {
         }      
         #endregion    

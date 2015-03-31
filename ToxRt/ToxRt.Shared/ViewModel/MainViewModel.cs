@@ -255,8 +255,8 @@ namespace ToxRt.ViewModel
 
         #endregion
         #region Ctors and Methods
-        public MainViewModel(INavigationService navigationService, IMessagesNavigationService innerNavigationService)
-            :base(navigationService,innerNavigationService)
+        public MainViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
+            :base(navigationService,dataService,innerNavigationService)
         {
             
             //for test purpuse only

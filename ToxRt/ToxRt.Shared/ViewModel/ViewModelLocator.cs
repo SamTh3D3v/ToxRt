@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using ToxRt.Model;
 using ToxRt.NavigationService;
 using ToxRt.View;
 
@@ -23,6 +24,7 @@ namespace ToxRt.ViewModel
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<GroupeChatSettingsViewModel>();
             SetupUpNavigationServices();
+            SimpleIoc.Default.Register<IDataService, DataService>();
 
         }        
         private static void SetupUpNavigationServices()
