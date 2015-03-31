@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ToxRt.Helpers;
 using ToxRt.Model;
@@ -17,7 +18,19 @@ namespace ToxRt.ViewModel
 
         #endregion
         #region Commands
-
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () =>
+                    {
+                        NavigationService.NavigateTo("MainPage");
+                    }));
+            }
+        }
         #endregion
         #region Ctors and Methods
 

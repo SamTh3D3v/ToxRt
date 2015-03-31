@@ -248,7 +248,7 @@ namespace ToxRt.ViewModel
                     ?? (_creditCommand = new RelayCommand(
                     () =>
                     {
-                        InnerNavigationService.NavigateTo("CreditView");    
+                        NavigationService.NavigateTo("CreditView");    
                     }));
             }
         }

@@ -10,7 +10,22 @@
     <helpers:BindablePage.DataContext>
         <Binding Source="{StaticResource Locator}" Path="SettingsViewModel"></Binding>
     </helpers:BindablePage.DataContext>
-
+    <helpers:BindablePage.TopAppBar>
+        <AppBar>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton Label="Back" Command="{Binding GoBackCommand}" Grid.Column="0">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE016;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </Grid>
+        </AppBar>
+    </helpers:BindablePage.TopAppBar>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Hub Header="Settings" Orientation="Horizontal" >
             <HubSection MinWidth="600" Header="User Details" >
