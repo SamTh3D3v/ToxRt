@@ -11,11 +11,28 @@ namespace ToxRt.ViewModel
 {
     public class AddFriendViewModel:NavigableViewModelBase
     {
-        #region Fields        
-        
+        #region Fields   
+        private FriendRequest _newFriendRequest;       
         #endregion
         #region Properties
+        public FriendRequest NewFriendRequest
+        {
+            get
+            {
+                return _newFriendRequest;
+            }
 
+            set
+            {
+                if (_newFriendRequest == value)
+                {
+                    return;
+                }
+
+                _newFriendRequest = value;
+                RaisePropertyChanged();
+            }
+        }   
         #endregion
         #region Commands
 
