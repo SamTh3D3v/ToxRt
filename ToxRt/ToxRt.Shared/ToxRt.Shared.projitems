@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SettingsListViewItemClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\UserStatusToColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OnlineToIsCheckedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BindablePage.cs" />

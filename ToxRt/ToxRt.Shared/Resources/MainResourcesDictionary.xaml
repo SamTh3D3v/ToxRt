@@ -16,4 +16,5 @@
     <converters:OnlineToIsCheckedConverter x:Key="OnlineToIsCheckedConverter"/>
     <converters:OfflineToIsCheckedConverter x:Key="OfflineToIsCheckedConverter"/>
     <converters:AwayToIsCheckedConverter x:Key="AwayToIsCheckedConverter"/>
+    <converters:SettingsListViewItemClickedConverter x:Key="SettingsListViewItemClickedConverter"/>
 </ResourceDictionary>

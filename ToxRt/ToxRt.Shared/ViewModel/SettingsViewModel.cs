@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ToxRt.Helpers;
@@ -10,10 +11,23 @@ using ToxRt.NavigationService;
 
 namespace ToxRt.ViewModel
 {
-    public class SettingsViewModel:NavigableViewModelBase
+    public enum SettingsType
     {
-       #region Fields  
-        private Profile _currentProfile   ;
+        UserDetails,
+        UserSettings,
+        DevicesAndDisplay,
+        Networking
+    }
+
+    public class SettingTypeItem
+    {
+        public SettingsType SettingsType { get; set; }
+        public String SettingsDisplayName { get; set; }        
+    }
+    public class SettingsViewModel : NavigableViewModelBase
+    {
+        #region Fields
+        private Profile _currentProfile;
         private ObservableCollection<String> _themes = new ObservableCollection<string>()
         {
             "Default" //tmp
@@ -31,10 +45,15 @@ namespace ToxRt.ViewModel
         private String _selectedAudioInput;
         private String _selectedAudioOutput;
         private String _selectedVideoInput;
-        private String _selectedDpi;      
-        private Proxy _currentProxy  ;
+        private String _selectedDpi;
+        private Proxy _currentProxy;
         private ObservableCollection<String> _proxyState;
         private String _selectedProxyState;
+        private Visibility _userSettingsVisibility = Visibility.Collapsed;
+        private Visibility _userDetailsVisibility = Visibility.Collapsed;
+        private Visibility _networkingVisibility = Visibility.Collapsed;
+        private Visibility _devicesAndDisplay = Visibility.Collapsed;
+        private ObservableCollection<SettingTypeItem> _settingItems; 
         #endregion
         #region Properties
         public Profile CurrentProfile
@@ -216,7 +235,7 @@ namespace ToxRt.ViewModel
                 _selectedVideoInput = value;
                 RaisePropertyChanged();
             }
-        }    
+        }
         public String SelectedDpi
         {
             get
@@ -325,6 +344,96 @@ namespace ToxRt.ViewModel
                 RaisePropertyChanged();
             }
         }
+        public Visibility UserSettingsVisibility
+        {
+            get
+            {
+                return _userSettingsVisibility;
+            }
+
+            set
+            {
+                if (_userSettingsVisibility == value)
+                {
+                    return;
+                }
+
+                _userSettingsVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        public Visibility UserDetailsVisibility
+        {
+            get
+            {
+                return _userDetailsVisibility;
+            }
+
+            set
+            {
+                if (_userDetailsVisibility == value)
+                {
+                    return;
+                }
+
+                _userDetailsVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        public Visibility NeworkingVisibility
+        {
+            get
+            {
+                return _networkingVisibility;
+            }
+
+            set
+            {
+                if (_networkingVisibility == value)
+                {
+                    return;
+                }
+
+                _networkingVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        public Visibility DevicesAndDisplay
+        {
+            get
+            {
+                return _devicesAndDisplay;
+            }
+
+            set
+            {
+                if (_devicesAndDisplay == value)
+                {
+                    return;
+                }
+
+                _devicesAndDisplay = value;
+                RaisePropertyChanged();
+            }
+        }        
+        public ObservableCollection<SettingTypeItem> SettingItems
+        {
+            get
+            {
+                return _settingItems;
+            }
+
+            set
+            {
+                if (_settingItems == value)
+                {
+                    return;
+                }
+
+                _settingItems = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
         #region Commands
         private RelayCommand _audioPreviewCommand;
@@ -336,7 +445,7 @@ namespace ToxRt.ViewModel
                     ?? (_audioPreviewCommand = new RelayCommand(
                     () =>
                     {
-                        
+
                     }));
             }
         }
@@ -350,7 +459,7 @@ namespace ToxRt.ViewModel
                     ?? (_videoPreviewCommand = new RelayCommand(
                     () =>
                     {
-                        
+
                     }));
             }
         }
@@ -363,19 +472,75 @@ namespace ToxRt.ViewModel
                     ?? (_goBackCommand = new RelayCommand(
                     () =>
                     {
-                        NavigationService.NavigateTo("MainPage");  
+                        NavigationService.NavigateTo("MainPage");
                     }));
             }
         }
-      
-        
+        private RelayCommand<SettingsType> _changeSetingsTypeCommand;
+        public RelayCommand<SettingsType> ChangeSetingsTypeCommand
+        {
+            get
+            {
+                return _changeSetingsTypeCommand
+                    ?? (_changeSetingsTypeCommand = new RelayCommand<SettingsType>(
+                    (settingsType) =>
+                    {
+                        NeworkingVisibility = Visibility.Collapsed;
+                        UserDetailsVisibility = Visibility.Collapsed;
+                        UserSettingsVisibility = Visibility.Collapsed;
+                        DevicesAndDisplay = Visibility.Collapsed;
+                        switch (settingsType)
+                        {
+                            case SettingsType.UserDetails:
+                                UserDetailsVisibility = Visibility.Visible;
+                                break;
+                            case SettingsType.UserSettings:
+                                UserSettingsVisibility = Visibility.Visible;
+                                break;
+                            case SettingsType.Networking:
+                                NeworkingVisibility = Visibility.Visible;
+                                break;
+                            case SettingsType.DevicesAndDisplay:
+                                DevicesAndDisplay = Visibility.Visible;
+                                break;
+
+                        }
+
+                    }));
+            }
+        }
+
+
         #endregion
         #region Ctors and Methods
 
         public SettingsViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
-            : base(navigationService,dataService, innerNavigationService)
+            : base(navigationService, dataService, innerNavigationService)
         {
-        }      
-        #endregion 
+            SettingItems=new ObservableCollection<SettingTypeItem>()
+            {
+                new SettingTypeItem()
+                {
+                    SettingsType = SettingsType.DevicesAndDisplay,
+                    SettingsDisplayName ="Devices And Display"
+                }, 
+                new SettingTypeItem()
+                {
+                    SettingsType = SettingsType.UserDetails,
+                    SettingsDisplayName ="User Details"
+                }, 
+                new SettingTypeItem()
+                {
+                    SettingsType = SettingsType.UserSettings,
+                    SettingsDisplayName ="User Settings"
+                }, 
+                new SettingTypeItem()
+                {
+                    SettingsType = SettingsType.Networking,
+                    SettingsDisplayName ="Networking"
+                },
+            };
+        }
+        #endregion
     }
 }
