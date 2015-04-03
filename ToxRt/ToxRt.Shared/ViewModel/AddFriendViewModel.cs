@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ToxRt.Helpers;
 using ToxRt.Model;
@@ -35,6 +36,19 @@ namespace ToxRt.ViewModel
         }   
         #endregion
         #region Commands
+        private RelayCommand _sendRequestCommand;
+        public RelayCommand SendRequestCommand
+        {
+            get
+            {
+                return _sendRequestCommand
+                    ?? (_sendRequestCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
+        }
 
         #endregion
         #region Ctors and Methods

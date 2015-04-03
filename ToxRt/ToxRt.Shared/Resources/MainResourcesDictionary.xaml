@@ -2,7 +2,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ToxRt.Resources"
-    xmlns:converters="using:ToxRt.Converters">
+    xmlns:converters="using:ToxRt.Converters">    
+    <FontFamily   x:Key="UiMostTextFontFamily" >Segoe UI Semilight</FontFamily>   <!--11pt-->
+    <FontFamily   x:Key="UiCaptionsFontFamily" >Segoe UI</FontFamily>      <!--9pt-->
+    <FontFamily   x:Key="UiClearlyVisibleFontFamily" >Segoe UI Light</FontFamily> <!--20pt-->
+   
+    
+    
     <SolidColorBrush x:Key="ThemeBrush" Color="#ecf0f1"/>
     <SolidColorBrush x:Key="ThemeFontBrush" Color="Black"/>        
     <converters:ListViewItemClickedConverter x:Key="ListViewItemClickedConverter"/>
