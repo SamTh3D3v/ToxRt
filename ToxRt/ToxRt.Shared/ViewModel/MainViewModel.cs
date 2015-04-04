@@ -25,7 +25,7 @@ namespace ToxRt.ViewModel
         #region Fields        
         private String _localId;       
         private ObservableCollection<Friend> _listFriends;
-        private Profile _currentProfile;
+        private Profile _defaultProfile;
         private Tox _tox;
         private Status _userStatus = Status.Online;
         // for testing purpuse only
@@ -72,21 +72,21 @@ namespace ToxRt.ViewModel
                 RaisePropertyChanged();
             }
         }
-        public Profile CurrentProfile
+        public Profile DefaultProfile
         {
             get
             {
-                return _currentProfile;
+                return _defaultProfile;
             }
 
             set
             {
-                if (_currentProfile == value)
+                if (_defaultProfile == value)
                 {
                     return;
                 }
 
-                _currentProfile = value;
+                _defaultProfile = value;
                 RaisePropertyChanged();
             }
         }              
@@ -129,7 +129,10 @@ namespace ToxRt.ViewModel
                     ?? ( _loadedCommand = new RelayCommand(
                     () =>
                     {
-                        //Init Tox
+                        //Load the default profile from the database
+                        DefaultProfile = DataService.GetDefaultProfile();
+
+                        //initiate tox                       
                         var options = new ToxOptions(true, false);
 
                         _tox = new Tox(options);
@@ -139,8 +142,8 @@ namespace ToxRt.ViewModel
                         foreach (ToxNode node in _nodes)
                             _tox.BootstrapFromNode(node);
 
-                        _tox.Name = CurrentProfile.ScreenName;
-                        _tox.StatusMessage = CurrentProfile.StatusMessage;
+                        _tox.Name = DefaultProfile.ScreenName;
+                        _tox.StatusMessage = DefaultProfile.StatusMessage;
                         _tox.Start();
 
                         LocalId= _tox.Id.ToString();
@@ -260,7 +263,7 @@ namespace ToxRt.ViewModel
         {
             
             //for test purpuse only
-            CurrentProfile=new Profile()
+            DefaultProfile=new Profile()
             {
                 RealName = "Elhamer Oussama",
                 StatusMessage = "Life is Good",

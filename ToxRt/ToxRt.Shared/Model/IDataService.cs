@@ -11,5 +11,6 @@ namespace ToxRt.Model
         Task<List<Message>> GetMessagesByFriendId(long friendId);
         Task<List<Friend>> GetCurrentProfileFriends(long profileId);
         Profile GetProfileByProfileId(long profileId);
+        Profile GetDefaultProfile();
     }
 }

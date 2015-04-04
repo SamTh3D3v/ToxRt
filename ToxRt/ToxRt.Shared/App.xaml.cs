@@ -78,7 +78,7 @@ namespace ToxRt
                         this.transitions.Add(c);
                     }
                 }
-                1
+                
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += this.RootFrame_FirstNavigated;
 #endif
@@ -128,7 +128,9 @@ namespace ToxRt
         {
             bool isDatabaseExisting = false;
             try
-            {               
+            {
+                var f = ApplicationData.Current.LocalFolder.Path;
+                
                 StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("tox_messages.db"); //needs to be saved in %APPDATA%/tox/
                 isDatabaseExisting = true;
             }
@@ -139,8 +141,8 @@ namespace ToxRt
 
             if (!isDatabaseExisting)
             {
-                var folder = Package.Current.InstalledLocation;                
-                StorageFile databaseFile = await folder.GetFileAsync(@"\Data\tox_messages.db");
+                var folder = Package.Current.InstalledLocation;
+                StorageFile databaseFile = await folder.GetFileAsync("tox_messages.db"); //needs update
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
             }
 

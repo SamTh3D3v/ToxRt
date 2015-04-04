@@ -85,11 +85,40 @@ namespace ToxRt.Model
                     profile.FriendId = (int)statement[0];
                     profile.ScreenName = (string)statement[1];
                     profile.StatusMessage = (string)statement[2];
-                    // ... fill the navigation collections 
+                    profile.ToxId = (string)statement[3];
+                    profile.ProfileLanguage = (string)statement[4];
+                    profile.ProfileTheme = (string)statement[5];
+                    profile.AudioNotifications = (bool)statement[6];
+                    profile.CloseToTray = (bool)statement[7];
+                    profile.IsDefault = (bool)statement[8];
+                    profile.ProfileName = (string)statement[9];    //used to load profile
                 }
             }
             return profile;
         }
+
+        public Profile GetDefaultProfile()
+        {
+            var profile = new Profile();
+            using (var statement = _connection.Prepare("SELECT * FROM PROFILES WHERE IsDefault = 1")) //1 is true
+            {                
+                if (statement.Step() == SQLiteResult.ROW)
+                {
+                    profile.FriendId = (int)statement[0];
+                    profile.ScreenName = (string)statement[1];
+                    profile.StatusMessage = (string)statement[2];
+                    profile.ToxId = (string)statement[3];
+                    profile.ProfileLanguage = (string)statement[4];
+                    profile.ProfileTheme = (string)statement[5];
+                    profile.AudioNotifications = (bool)statement[6];
+                    profile.CloseToTray = (bool)statement[7];
+                    profile.IsDefault = (bool)statement[8];
+                    profile.ProfileName = (string)statement[9];    //used to load profile
+                }
+            }
+            return profile;
+        }
+
         #endregion
        
     }

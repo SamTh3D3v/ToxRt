@@ -14,8 +14,28 @@ namespace ToxRt.Model
         private ObservableCollection<Friend> _friends;
         private String _profileTheme = "Mytheme"; //tmp
         private String _profileLanguage = "English"; //tmp
+        private bool _isDefault = false;
+        private String _profileName;
         #endregion
-        #region Properties
+        #region Properties              
+        public String ProfileName
+        {
+            get
+            {
+                return _profileName;
+            }
+
+            set
+            {
+                if (_profileName == value)
+                {
+                    return;
+                }
+
+                _profileName = value;
+                OnPropertyChanged();
+            }
+        }
         public bool Loggin
         {
             get
@@ -121,6 +141,24 @@ namespace ToxRt.Model
                 }
 
                 _friends = value;
+                OnPropertyChanged();
+            }
+        }        
+        public bool IsDefault
+        {
+            get
+            {
+                return _isDefault;
+            }
+
+            set
+            {
+                if (_isDefault == value)
+                {
+                    return;
+                }
+
+                _isDefault = value;
                 OnPropertyChanged();
             }
         }
