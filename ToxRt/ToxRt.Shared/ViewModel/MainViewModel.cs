@@ -131,6 +131,16 @@ namespace ToxRt.ViewModel
                     {
                         //Load the default profile from the database
                         DefaultProfile = DataService.GetDefaultProfile();
+                        if (DefaultProfile==null)
+                        {
+                            //Create a default profile before starting
+                            DefaultProfile=new Profile()
+                            {
+                                ScreenName = "Tmp",
+                                StatusMessage = "Tmp"
+
+                            };
+                        }
 
                         //initiate tox                       
                         var options = new ToxOptions(true, false);

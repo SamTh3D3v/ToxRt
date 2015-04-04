@@ -8,9 +8,11 @@ namespace ToxRt.Model
     public interface IDataService
     {
         //geters
-        Task<List<Message>> GetMessagesByFriendId(long friendId);
-        Task<List<Friend>> GetCurrentProfileFriends(long profileId);
-        Profile GetProfileByProfileId(long profileId);
+        Task<List<Message>> GetMessagesByFriendId(int friendId);
+        Task<List<Friend>> GetCurrentProfileFriends(int profileId);
+        Profile GetProfileByProfileId(int profileId);
         Profile GetDefaultProfile();
+        void InsertNewProfile(Profile profile);
+        void UpadteProfile(Profile profile);
     }
 }

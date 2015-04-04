@@ -16,7 +16,7 @@ namespace ToxRt.Model
 
         #endregion
         #region Ctors and Methods
-        public async Task<List<Message>> GetMessagesByFriendId(long friendId)
+        public async Task<List<Message>> GetMessagesByFriendId(int friendId)
         {
             var messeges = new List<Message>();
             using (var statement = _connection.Prepare("SELECT * FROM MESSAGES WHERE SenderID= ?")) 
@@ -27,7 +27,7 @@ namespace ToxRt.Model
                     messeges.Add(new Message()
                     {
                         MessageId = (int)statement[0],
-                        Sender = GetFriendByFriendId((long)statement[1]),
+                        Sender = GetFriendByFriendId((int)statement[1]),
                         MessageText = (string)statement[2],
                         MessageDate = (DateTime)statement[3]
                     });
@@ -36,7 +36,7 @@ namespace ToxRt.Model
             return messeges;
         }
 
-        private Friend GetFriendByFriendId(long friendId)
+        private Friend GetFriendByFriendId(int friendId)
         {
             var friend = new Friend();
             using (var statement = _connection.Prepare("SELECT * FROM FRIENDS WHERE FriendId = ?"))
@@ -52,7 +52,7 @@ namespace ToxRt.Model
             return friend;
         }
 
-        public async Task<List<Friend>> GetCurrentProfileFriends(long profileId)
+        public async Task<List<Friend>> GetCurrentProfileFriends(int profileId)
         {
             var friends = new List<Friend>();
             using (var statement = _connection.Prepare("SELECT * FROM FRIENDS WHERE ProfileId= ?")) //tmp
@@ -74,7 +74,7 @@ namespace ToxRt.Model
             return friends;
         }
 
-        public Profile GetProfileByProfileId(long profileId)
+        public Profile GetProfileByProfileId(int profileId)
         {
             var profile = new Profile();
             using (var statement = _connection.Prepare("SELECT * FROM PROFILES WHERE FriendId = ?"))
@@ -104,6 +104,7 @@ namespace ToxRt.Model
             {                
                 if (statement.Step() == SQLiteResult.ROW)
                 {
+                    profile = new Profile();
                     profile.FriendId = (int)statement[0];
                     profile.ScreenName = (string)statement[1];
                     profile.StatusMessage = (string)statement[2];
@@ -115,8 +116,56 @@ namespace ToxRt.Model
                     profile.IsDefault = (bool)statement[8];
                     profile.ProfileName = (string)statement[9];    //used to load profile
                 }
+                else
+                {
+                    return null;  //no profile is created yet
+                }
             }
             return profile;
+        }
+
+        public void InsertNewProfile(Profile profile)
+        {
+            using (var statement = _connection.Prepare(@"INSERT INTO PROFILES ( ScreenName,StatusMessage,ToxId,Language,Theme,AudioNotifications,CloseToTray,IsDefault,ProfileName)
+                                            VALUES( @ScreenName,@StatusMessage,@ToxId,@Language,@Theme,@AudioNotifications,@CloseToTray,@IsDefault,@ProfileName);"))
+            {
+                statement.Bind("@ScreenName", profile.ScreenName);
+                statement.Bind("@StatusMessage", profile.StatusMessage);
+                statement.Bind("@ToxId", profile.ToxId);
+                statement.Bind("@Language", profile.ProfileLanguage);
+                statement.Bind("@Theme", profile.ProfileTheme);
+                statement.Bind("@AudioNotifications", profile.AudioNotifications);
+                statement.Bind("@CloseToTray", profile.CloseToTray);
+                statement.Bind("@IsDefault", profile.IsDefault);
+                statement.Bind("@ProfileName", profile.ProfileName);
+                
+                statement.Step();
+            }
+        }
+
+        public void UpadteProfile(Profile profile)
+        {
+            using (
+                var statement =
+                    _connection.Prepare(
+                        @"UPDATE PROFILES SET ScreenName=@ScreenName,StatusMessage=@StatusMessage,ToxId=@ToxId,Language=@Language,Theme=@Theme,
+AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDefault,ProfileName=@ProfileName WHERE ProfileId=@ProfileId;")
+                )
+            {
+                statement.Bind("@ScreenName", profile.ScreenName);
+                statement.Bind("@StatusMessage", profile.StatusMessage);
+                statement.Bind("@ToxId", profile.ToxId);
+                statement.Bind("@Language", profile.ProfileLanguage);
+                statement.Bind("@Theme", profile.ProfileTheme);
+                statement.Bind("@AudioNotifications", profile.AudioNotifications);
+                statement.Bind("@CloseToTray", profile.CloseToTray);
+                statement.Bind("@IsDefault", profile.IsDefault);
+                statement.Bind("@ProfileName", profile.ProfileName);
+                statement.Bind("@ProfileId", profile.ProfileId);
+
+                statement.Step();
+            }
+
         }
 
         #endregion
