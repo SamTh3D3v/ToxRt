@@ -8,13 +8,13 @@ namespace ToxRt.Model
     public class Profile : Friend
     {
         #region Fields
-        private bool _loggin = false;
-        private bool _audioNotifications = false;
-        private bool _closeToTray = false;
+        private int _loggin = 0;
+        private int _audioNotifications = 0;
+        private int _closeToTray = 0;
         private ObservableCollection<Friend> _friends;
         private String _profileTheme = "Mytheme"; //tmp
         private String _profileLanguage = "English"; //tmp
-        private bool _isDefault = false;
+        private int _isDefault = 0;
         private String _profileName;
         #endregion
         #region Properties              
@@ -36,7 +36,7 @@ namespace ToxRt.Model
                 OnPropertyChanged();
             }
         }
-        public bool Loggin
+        public int Loggin
         {
             get
             {
@@ -54,7 +54,7 @@ namespace ToxRt.Model
                 OnPropertyChanged();
             }
         }
-        public bool AudioNotifications
+        public int AudioNotifications
         {
             get
             {
@@ -72,7 +72,7 @@ namespace ToxRt.Model
                 OnPropertyChanged();
             }
         }
-        public bool CloseToTray
+        public int CloseToTray
         {
             get
             {
@@ -144,7 +144,7 @@ namespace ToxRt.Model
                 OnPropertyChanged();
             }
         }        
-        public bool IsDefault
+        public int IsDefault
         {
             get
             {

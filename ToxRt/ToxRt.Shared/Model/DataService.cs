@@ -88,9 +88,9 @@ namespace ToxRt.Model
                     profile.ToxId = (string)statement[3];
                     profile.ProfileLanguage = (string)statement[4];
                     profile.ProfileTheme = (string)statement[5];
-                    profile.AudioNotifications = (bool)statement[6];
-                    profile.CloseToTray = (bool)statement[7];
-                    profile.IsDefault = (bool)statement[8];
+                    profile.AudioNotifications = (int)statement[6];
+                    profile.CloseToTray = (int)statement[7];
+                    profile.IsDefault = (int)statement[8];
                     profile.ProfileName = (string)statement[9];    //used to load profile
                 }
             }
@@ -105,15 +105,16 @@ namespace ToxRt.Model
                 if (statement.Step() == SQLiteResult.ROW)
                 {
                     profile = new Profile();
-                    profile.FriendId = (int)statement[0];
+                    var a =  int.Parse(statement[0].ToString());
+                    profile.FriendId = int.Parse(statement[0].ToString());
                     profile.ScreenName = (string)statement[1];
                     profile.StatusMessage = (string)statement[2];
                     profile.ToxId = (string)statement[3];
                     profile.ProfileLanguage = (string)statement[4];
                     profile.ProfileTheme = (string)statement[5];
-                    profile.AudioNotifications = (bool)statement[6];
-                    profile.CloseToTray = (bool)statement[7];
-                    profile.IsDefault = (bool)statement[8];
+                    profile.AudioNotifications = int.Parse(statement[6].ToString());
+                    profile.CloseToTray = int.Parse(statement[7].ToString());
+                    profile.IsDefault =int.Parse(statement[8].ToString());
                     profile.ProfileName = (string)statement[9];    //used to load profile
                 }
                 else

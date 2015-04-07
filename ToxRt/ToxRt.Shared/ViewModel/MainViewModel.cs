@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using Windows.Devices.Geolocation;
 using Windows.Networking.NetworkOperators;
 using GalaSoft.MvvmLight;
@@ -137,9 +138,16 @@ namespace ToxRt.ViewModel
                             DefaultProfile=new Profile()
                             {
                                 ScreenName = "Tmp",
-                                StatusMessage = "Tmp"
-
+                                StatusMessage = "Tmp",
+                                ToxId = "",
+                                ProfileLanguage = "English",
+                                ProfileTheme = "Default",
+                                AudioNotifications = 1,
+                                CloseToTray = 1,
+                                IsDefault = 1,
+                                ProfileName = Guid.NewGuid().ToString()                                
                             };
+                            DataService.InsertNewProfile(DefaultProfile);
                         }
 
                         //initiate tox                       
