@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\NavigableViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CommonSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\DataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\DHT_Node.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Friend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\FriendRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\IDataService.cs" />
