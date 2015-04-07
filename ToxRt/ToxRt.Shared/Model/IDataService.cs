@@ -14,5 +14,6 @@ namespace ToxRt.Model
         Profile GetDefaultProfile();
         void InsertNewProfile(Profile profile);
         void UpadteProfile(Profile profile);
+        Task<List<DHT_Node>> LoadAllDhtNodes();
     }
 }
