@@ -64,8 +64,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Data\tox_messages.db">
+    <Content Include="$(MSBuildThisFileDirectory)Data\tox_messages.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 </Project>

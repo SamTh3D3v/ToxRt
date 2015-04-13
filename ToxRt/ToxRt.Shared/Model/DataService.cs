@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Storage;
 using SQLitePCL;
 
@@ -172,20 +173,20 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
         public async Task<List<DHT_Node>> LoadAllDhtNodes()
         {
             var nodes = new List<DHT_Node>();
-            using (var statement = _connection.Prepare("SELECT * FROM DHT_Nodes"))  //i might want to load only up ones 
+            using (var statement = _connection.Prepare("SELECT * FROM DHT_Nodes"))  //i might want to load only "UP" ones 
             {                
                 while (statement.Step() == SQLiteResult.ROW)
-                {
+                {                                                      
                     nodes.Add(new DHT_Node()
                     {
-                        NodeId = (int)statement[0],
-                        Ipv4 = (String)statement[1],
-                        IpV6 = (String)statement[2],
-                        Port = (int)statement[3],
-                        ClientId = (String)statement[4],
-                        Maintainer = (String)statement[5],
-                        Location = (String)statement[6],
-                        Status = (String)statement[7]                                          
+                        NodeId = int.Parse(statement[0].ToString()),
+                        Ipv4 = (string)statement[1],
+                        IpV6 = (string)statement[2],
+                        Port = int.Parse(statement[3].ToString()),
+                        ClientId = (string)statement[4],
+                        Maintainer = (string)statement[5],
+                        Location = (string)statement[6],
+                        Status = (string)statement[7]                                          
                     });
                 }
             }

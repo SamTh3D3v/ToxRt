@@ -30,11 +30,7 @@ namespace ToxRt.ViewModel
         private Tox _tox;
         private Status _userStatus = Status.Online;
         // for testing purpuse only
-        private ToxNode[] _nodes = new ToxNode[]
-        {
-            new ToxNode("192.254.75.102", 33445, new ToxKey(ToxKeyType.Public, "951C88B7E75C867418ACDB5D273821372BB5BD652740BCDF623A4FA293E75D2F")),
-            new ToxNode("144.76.60.215", 33445, new ToxKey(ToxKeyType.Public, "04119E835DF3E78BACF0F84235B300546AF8B936F035185E2A8E9E0A67C8924F"))
-        };
+        private ObservableCollection<DHT_Node> _nodes;
         #endregion
         #region Properties
         public ObservableCollection<Friend> ListFriends
@@ -127,8 +123,7 @@ namespace ToxRt.ViewModel
             get
             {
                 return  _loadedCommand
-                    ?? ( _loadedCommand = new RelayCommand(
-                    () =>
+                    ?? ( _loadedCommand = new RelayCommand(async () =>
                     {
                         //Load the default profile from the database
                         DefaultProfile = DataService.GetDefaultProfile();
@@ -150,17 +145,37 @@ namespace ToxRt.ViewModel
                             DataService.InsertNewProfile(DefaultProfile);
                         }
 
-                        //initiate tox                       
+                        //initiate tox       --get those option parameter from the db                 
                         var options = new ToxOptions(true, false);
 
                         _tox = new Tox(options);
                         _tox.OnFriendRequest += tox_OnFriendRequest;
                         _tox.OnFriendMessage += tox_OnFriendMessage;
 
-                        foreach (ToxNode node in _nodes)
-                            _tox.BootstrapFromNode(node);
+                        
 
-                        _tox.Name = DefaultProfile.ScreenName;
+                        //Load the nodes from the local db                            
+                        _nodes=new ObservableCollection<DHT_Node>(await DataService.LoadAllDhtNodes());
+                        //try to bootstap from those node                         
+                        if(!Boostraping())
+                        {
+                            //update the nodes from the wiki [At least for now] page and reboostraping  
+                            UpdateNodes();
+                            if (!Boostraping())
+                            {
+                                Debug.WriteLine("Can't boostrap from the current nodes !");
+                            }                            
+                        }
+                        
+                        
+
+
+
+
+
+                        
+
+                        _tox.Name = DefaultProfile.ScreenName;    //Everything is loadede from the Sqlite database, no .tox files or anything 
                         _tox.StatusMessage = DefaultProfile.StatusMessage;
                         _tox.Start();
 
@@ -168,6 +183,18 @@ namespace ToxRt.ViewModel
                         Debug.WriteLine("ID: {0}", LocalId);                        
                     }));
             }
+        }
+
+        private bool Boostraping()
+        {
+            bool success = false;
+            foreach (DHT_Node node in _nodes)
+                success=success || _tox.BootstrapFromNode(new ToxNode(node.Ipv4, node.Port, new ToxKey(ToxKeyType.Public, node.ClientId)));
+            return success;   //make sure that at least one node is bootstraped succesfully
+        }
+        private void UpdateNodes()
+        {
+            
         }
         private RelayCommand _addFriendCommand;
         public RelayCommand AddFriendCommand
