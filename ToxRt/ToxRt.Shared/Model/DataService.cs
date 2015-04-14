@@ -27,10 +27,10 @@ namespace ToxRt.Model
                 {
                     messeges.Add(new Message()
                     {
-                        MessageId = (int)statement[0],
+                        MessageId = int.Parse(statement[0].ToString()),
                         Sender = GetFriendByFriendId((int)statement[1]),
                         MessageText = (string)statement[2],
-                        MessageDate = (DateTime)statement[3]
+                        MessageDate = DateTime.Parse(statement[3].ToString())
                     });
                 }
             }
@@ -45,7 +45,7 @@ namespace ToxRt.Model
                 statement.Bind(1, friendId);
                 if (statement.Step() == SQLiteResult.ROW)
                 {
-                    friend.FriendId = (int)statement[0];
+                    friend.FriendId = int.Parse(statement[0].ToString());
                     friend.ScreenName = (string)statement[1];
                     friend.StatusMessage = (string)statement[2];
                 }
@@ -63,11 +63,11 @@ namespace ToxRt.Model
                 {
                     friends.Add(new Friend()
                     {
-                        FriendId = (int)statement[0],
+                        FriendId = int.Parse(statement[0].ToString()),
                         ScreenName = (string)statement[1],
                         StatusMessage = (string)statement[2],
                         ToxId = (string)statement[3],
-                        ProfileId = (int)statement[4]
+                        ProfileId = int.Parse(statement[4].ToString())
 
                     });
                 }
@@ -83,15 +83,15 @@ namespace ToxRt.Model
                 statement.Bind(1, profileId);
                 if (statement.Step() == SQLiteResult.ROW)
                 {
-                    profile.FriendId = (int)statement[0];
+                    profile.FriendId = int.Parse(statement[0].ToString());
                     profile.ScreenName = (string)statement[1];
                     profile.StatusMessage = (string)statement[2];
                     profile.ToxId = (string)statement[3];
                     profile.ProfileLanguage = (string)statement[4];
                     profile.ProfileTheme = (string)statement[5];
-                    profile.AudioNotifications = (int)statement[6];
-                    profile.CloseToTray = (int)statement[7];
-                    profile.IsDefault = (int)statement[8];
+                    profile.AudioNotifications = int.Parse(statement[6].ToString());
+                    profile.CloseToTray = int.Parse(statement[7].ToString());
+                    profile.IsDefault = int.Parse(statement[8].ToString());
                     profile.ProfileName = (string)statement[9];    //used to load profile
                 }
             }
@@ -195,27 +195,62 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
 
         public void AddFriendRequest(FriendRequest request)
         {
-            throw new NotImplementedException();
+            using (var statement = _connection.Prepare(@"INSERT INTO FriendRequest ( ToxId,Message) VALUES ( @ToxId,@Message);"))
+            {
+                statement.Bind("@ToxId", request.ToxId);
+                statement.Bind("@Message", request.RequestMessage);               
+                statement.Step();
+            }
         }
 
-        public Task<List<FriendRequest>> GetAllFriendRequest()
+        public async Task<List<FriendRequest>> GetAllFriendRequest()
         {
-            throw new NotImplementedException();
+            var requests = new List<FriendRequest>();
+            using (var statement = _connection.Prepare("SELECT * FROM FriendRequest"))
+            {                
+                while (statement.Step() == SQLiteResult.ROW)
+                {
+                    requests.Add(new FriendRequest()
+                    {
+                        FriendRequestId = int.Parse(statement[0].ToString()),
+                        ToxId =(string)statement[1].ToString(),
+                        RequestMessage = (string)statement[2]                        
+                    });
+                }
+            }
+            return requests;
         }
 
         public void RemoveFriendRequest(string friendRequestId)
-        {
-            throw new NotImplementedException();
+        {            
+            using (var statement = _connection.Prepare("DELETE FROM FriendRequest WHERE ToxId = ?"))
+            {
+                statement.Bind(1, friendRequestId);
+                statement.Step();
+            }            
         }
 
         public void RemoveAllFriendRequest()
         {
-            throw new NotImplementedException();
+            using (var statement = _connection.Prepare("DELETE FROM FriendRequest"))
+            {                
+                statement.Step();
+            }  
         }
 
         public bool FriendRequestExists(string friendRequestId)
         {
-            throw new NotImplementedException();
+            var request = new FriendRequest();
+            using (var statement = _connection.Prepare("SELECT * FROM FriendRequest WHERE ToxId = ?"))
+            {
+                statement.Bind(1, friendRequestId);
+                if (statement.Step() == SQLiteResult.EMPTY)
+                {
+                    statement.Dispose();
+                    return false;
+                }                              
+            }
+            return true;
         }
 
         #endregion
