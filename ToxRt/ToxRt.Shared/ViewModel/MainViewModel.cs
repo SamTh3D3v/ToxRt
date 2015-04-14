@@ -163,15 +163,7 @@ namespace ToxRt.ViewModel
                             {
                                 Debug.WriteLine("Can't boostrap from the current nodes !");
                             }                            
-                        }
-                        
-                        
-
-
-
-
-
-                        
+                        }  
 
                         _tox.Name = DefaultProfile.ScreenName;    //Everything is loadede from the Sqlite database, no .tox files or anything 
                         _tox.StatusMessage = DefaultProfile.StatusMessage;
@@ -332,6 +324,25 @@ namespace ToxRt.ViewModel
         {
             //automatically accept every friend request we receive
             _tox.AddFriendNoRequest(new ToxKey(ToxKeyType.Public, e.Id));
+
+
+
+
+
+            //try
+            //{
+            //    AddFriendRequestToView(e.Id, e.Message);
+            //    if (ViewModel.MainToxyUser.ToxStatus != ToxUserStatus.Busy)
+            //        this.Flash();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
+
+
+
+
         }
         private bool Boostraping()
         {
