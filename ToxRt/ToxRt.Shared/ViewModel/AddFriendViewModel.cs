@@ -164,30 +164,7 @@ namespace ToxRt.ViewModel
         public AddFriendViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
             : base(navigationService, dataService, innerNavigationService)
         {
-            //ttmp for test
-            ListPendingRequests=new ObservableCollection<FriendRequest>()
-            {
-                new FriendRequest()
-                {
-                    RequestMessage = "This is A request messge",
-                    ToxId = "qlinvezorinbporbnportbiornt"
-                },
-                 new FriendRequest()
-                {
-                    RequestMessage = "This is A request messge2",
-                    ToxId = "qlinvezorinbporbnportbiornt"
-                },
-                 new FriendRequest()
-                {
-                    RequestMessage = "This is A request messge3",
-                    ToxId = "qlinvezorinbporbnportbiornt"
-                },
-                 new FriendRequest()
-                {
-                    RequestMessage = "This is A request messge4",
-                    ToxId = "qlinvezorinbporbnportbiornt"
-                }
-            };
+           
         }
          private string getFriendStatusMessage(int friendnumber)
         {
@@ -197,13 +174,14 @@ namespace ToxRt.ViewModel
         {
             return _tox.GetName(friendnumber).Replace("\n", "").Replace("\r", "");
         }
-        public override void Activate(object parameter)
+        public override async void Activate(object parameter)
         {
             if (parameter is Tox)
             {
                 _tox = (Tox) parameter;
             } 
             NewFriendRequest=new FriendRequest();
+            ListPendingRequests=new ObservableCollection<FriendRequest>(await DataService.GetAllFriendRequest());
         }
         #endregion
     }

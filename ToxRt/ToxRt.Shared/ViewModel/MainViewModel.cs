@@ -326,29 +326,14 @@ namespace ToxRt.ViewModel
             _tox.AddFriendNoRequest(new ToxKey(ToxKeyType.Public, e.Id));
 
 
-            //Save the friend request in the database
-            //show A Notification 
+            //Save the friend request in the database            
+            DataService.AddFriendRequest(new FriendRequest()
+            {
+                ToxId = e.Id,
+                RequestMessage = e.Message
+            });
 
-
-
-
-
-
-
-            //try
-            //{
-            //    AddFriendRequestToView(e.Id, e.Message);
-            //    if (ViewModel.MainToxyUser.ToxStatus != ToxUserStatus.Busy)
-            //        this.Flash();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.ToString());
-            //}
-
-
-
-
+            //show A Notification //Toast, Push
         }
         private bool Boostraping()
         {
