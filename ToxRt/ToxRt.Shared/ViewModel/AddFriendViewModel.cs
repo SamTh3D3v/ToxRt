@@ -145,6 +145,19 @@ namespace ToxRt.ViewModel
                     }));
             }
         }
+        private RelayCommand _selectPandingRequestCommand;
+        public RelayCommand SelectPandingRequestCommand
+        {
+            get
+            {
+                return  _selectPandingRequestCommand
+                    ?? ( _selectPandingRequestCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
+        }
         #endregion
         #region Ctors and Methods
 
