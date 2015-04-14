@@ -15,5 +15,10 @@ namespace ToxRt.Model
         void InsertNewProfile(Profile profile);
         void UpadteProfile(Profile profile);
         Task<List<DHT_Node>> LoadAllDhtNodes();
+        void AddFriendRequest(FriendRequest request);
+        Task<List<FriendRequest>> GetAllFriendRequest();
+        void RemoveFriendRequest(string friendRequestId);
+        void RemoveAllFriendRequest();
+        bool FriendRequestExists(string friendRequestId);   //Yu could also use ToxID as a Unique Id To Delete arequest
     }
 }

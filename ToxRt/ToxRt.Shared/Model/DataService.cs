@@ -193,6 +193,31 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
             return nodes;
         }
 
+        public void AddFriendRequest(FriendRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<FriendRequest>> GetAllFriendRequest()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFriendRequest(string friendRequestId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAllFriendRequest()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool FriendRequestExists(string friendRequestId)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
        
     }

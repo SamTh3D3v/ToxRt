@@ -70,9 +70,6 @@ namespace ToxRt.Model
             }
         }
         #endregion
-        #region Commands
-
-        #endregion
         #region Ctors and Methods
         public event PropertyChangedEventHandler PropertyChanged;
 

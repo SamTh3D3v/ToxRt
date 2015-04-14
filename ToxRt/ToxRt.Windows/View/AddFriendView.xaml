@@ -6,12 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:ToxRt.Helpers"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d" >
     <helpers:BindablePage.DataContext>
         <Binding Source="{StaticResource Locator}" Path="AddFriendViewModel"></Binding>
     </helpers:BindablePage.DataContext>
 
-    <Grid Background="LightGray" Width="500" Height="500">
+    <Grid Background="LightGray" Width="700" Height="700">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -43,12 +45,17 @@
         <Border Background="WhiteSmoke" Grid.Row="2" Margin="5,0,5,5">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource HeaderTextBlockStyle}" FontSize="20" Foreground="Black" Margin="10,0,0,0" Text="Panding requests"      />
-                <!--Probably a wrapanel from the winrttoolkit will looks better-->
-                <ListView Grid.Row="1" Background="LightGray" ItemsSource="{Binding ListPendingRequests}">
+                <TextBlock  Grid.Row="0" Style="{StaticResource HeaderTextBlockStyle}" FontSize="20" Foreground="Black"  VerticalAlignment="Center" Margin="10"  Text="Panding requests"      />
+                <!--a wrapanel from the winrttoolkit will looks better-->
+                <ListView IsItemClickEnabled="True" Grid.Row="1" Background="LightGray" ItemsSource="{Binding ListPendingRequests}">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="ItemClick">
+                            <core:InvokeCommandAction Command="{Binding SelectPandingRequestCommand}"  />                            
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -80,6 +87,8 @@
                                         <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black"  Glyph="&#xE0A4;" />
                                     </Button.Content>
                                 </Button>
+                                <TextBox Visibility="Collapsed"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Text="{Binding RequestMessage}">                                    
+                                </TextBox>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -326,6 +326,12 @@ namespace ToxRt.ViewModel
             _tox.AddFriendNoRequest(new ToxKey(ToxKeyType.Public, e.Id));
 
 
+            //Save the friend request in the database
+            //show A Notification 
+
+
+
+
 
 
 
