@@ -20,5 +20,6 @@ namespace ToxRt.Model
         void RemoveFriendRequest(string friendRequestId);
         void RemoveAllFriendRequest();
         bool FriendRequestExists(string friendRequestId);   //Yu could also use ToxID as a Unique Id To Delete arequest
+        FriendRequest GetFriendRequestById(int friendRequestId);
     }
 }

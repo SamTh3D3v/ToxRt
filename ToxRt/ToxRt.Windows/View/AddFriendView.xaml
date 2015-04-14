@@ -50,7 +50,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock  Grid.Row="0" Style="{StaticResource HeaderTextBlockStyle}" FontSize="20" Foreground="Black"  VerticalAlignment="Center" Margin="10"  Text="Panding requests"      />
                 <!--a wrapanel from the winrttoolkit will looks better-->
-                <ListView IsItemClickEnabled="True" Grid.Row="1" Background="LightGray" ItemsSource="{Binding ListPendingRequests}">
+                <ListView x:Name="lv" IsItemClickEnabled="True" Grid.Row="1" Background="LightGray" ItemsSource="{Binding ListPendingRequests}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding SelectPandingRequestCommand}"  />                            
@@ -76,12 +76,12 @@
                                 </Grid.RowDefinitions>
                                 <Image  Source="../Images/user.png" Height="50" Grid.Column="0" Grid.Row="0"/>
                                 <TextBlock Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" Foreground="Black" Text="{Binding ToxId}" FontSize="15"/>
-                                <Button BorderBrush="Black" Grid.Column="2" Grid.Row="0"  Command="{Binding AcceptRequestCommand}">
+                                <Button BorderBrush="Black" Grid.Column="2" Grid.Row="0"  Command="{Binding DataContext.AcceptRequestCommand,ElementName=lv}" CommandParameter="{Binding FriendRequestId}">
                                     <Button.Content>
                                         <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black"  Glyph="&#xE001;" />
                                     </Button.Content>
                                 </Button>
-                                <Button BorderBrush="Black" Grid.Column="3" Grid.Row="0" Command="{Binding RefuseRequestCommand}">
+                                <Button BorderBrush="Black" Grid.Column="3" Grid.Row="0" Command="{Binding DataContext.RefuseRequestCommand,ElementName=lv}" CommandParameter="{Binding FriendRequestId}">
                                     <Button.Content>
                                         <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black"  Glyph="&#xE0A4;" />
                                     </Button.Content>

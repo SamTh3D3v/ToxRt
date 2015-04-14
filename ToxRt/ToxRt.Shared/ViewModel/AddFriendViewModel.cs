@@ -119,28 +119,37 @@ namespace ToxRt.ViewModel
         }
 
 
-        private RelayCommand _acceptRequestCommand; 
-        public RelayCommand AcceptRequestCommand
+        private RelayCommand<int> _acceptRequestCommand;
+        public RelayCommand<int> AcceptRequestCommand
         {
             get
             {
                 return _acceptRequestCommand
-                    ?? (_acceptRequestCommand = new RelayCommand(
-                    () =>
+                    ?? (_acceptRequestCommand = new RelayCommand<int>(
+                    (requestId) =>
                     {
-                        
+                        var request = DataService.GetFriendRequestById(requestId);
+                        _tox.AddFriendNoRequest(new ToxKey(ToxKeyType.Public, request.ToxId));
+                        DataService.RemoveFriendRequest(request.ToxId);
+
+
+                        //Add Friend to the friend Table
                     }));
             }
         }
-        private RelayCommand _refuseRequestCommand;
-        public RelayCommand RefuseRequestCommand
+        private RelayCommand<int> _refuseRequestCommand;
+        public RelayCommand<int> RefuseRequestCommand
         {
             get
             {
                 return _refuseRequestCommand
-                    ?? (_refuseRequestCommand = new RelayCommand(
-                    () =>
+                    ?? (_refuseRequestCommand = new RelayCommand<int>(async (requestId) =>
                     {
+                        var request = DataService.GetFriendRequestById(requestId);
+                        DataService.RemoveFriendRequest(request.ToxId);
+                        ListPendingRequests = new ObservableCollection<FriendRequest>(await DataService.GetAllFriendRequest());
+
+
                         
                     }));
             }

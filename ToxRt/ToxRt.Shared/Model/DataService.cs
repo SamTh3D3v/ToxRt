@@ -8,7 +8,7 @@ using SQLitePCL;
 
 namespace ToxRt.Model
 {
-    public class DataService:IDataService
+    public class DataService : IDataService
     {
         #region Fields
         private readonly SQLiteConnection _connection = new SQLiteConnection("tox_messages.db"); //tmp        
@@ -20,7 +20,7 @@ namespace ToxRt.Model
         public async Task<List<Message>> GetMessagesByFriendId(int friendId)
         {
             var messeges = new List<Message>();
-            using (var statement = _connection.Prepare("SELECT * FROM MESSAGES WHERE SenderID= ?")) 
+            using (var statement = _connection.Prepare("SELECT * FROM MESSAGES WHERE SenderID= ?"))
             {
                 statement.Bind(1, friendId);
                 while (statement.Step() == SQLiteResult.ROW)
@@ -102,11 +102,11 @@ namespace ToxRt.Model
         {
             var profile = new Profile();
             using (var statement = _connection.Prepare("SELECT * FROM PROFILES WHERE IsDefault = 1")) //1 is true
-            {                
+            {
                 if (statement.Step() == SQLiteResult.ROW)
                 {
                     profile = new Profile();
-                    var a =  int.Parse(statement[0].ToString());
+                    var a = int.Parse(statement[0].ToString());
                     profile.FriendId = int.Parse(statement[0].ToString());
                     profile.ScreenName = (string)statement[1];
                     profile.StatusMessage = (string)statement[2];
@@ -115,7 +115,7 @@ namespace ToxRt.Model
                     profile.ProfileTheme = (string)statement[5];
                     profile.AudioNotifications = int.Parse(statement[6].ToString());
                     profile.CloseToTray = int.Parse(statement[7].ToString());
-                    profile.IsDefault =int.Parse(statement[8].ToString());
+                    profile.IsDefault = int.Parse(statement[8].ToString());
                     profile.ProfileName = (string)statement[9];    //used to load profile
                 }
                 else
@@ -140,7 +140,7 @@ namespace ToxRt.Model
                 statement.Bind("@CloseToTray", profile.CloseToTray);
                 statement.Bind("@IsDefault", profile.IsDefault);
                 statement.Bind("@ProfileName", profile.ProfileName);
-                
+
                 statement.Step();
             }
         }
@@ -174,9 +174,9 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
         {
             var nodes = new List<DHT_Node>();
             using (var statement = _connection.Prepare("SELECT * FROM DHT_Nodes"))  //i might want to load only "UP" ones 
-            {                
+            {
                 while (statement.Step() == SQLiteResult.ROW)
-                {                                                      
+                {
                     nodes.Add(new DHT_Node()
                     {
                         NodeId = int.Parse(statement[0].ToString()),
@@ -186,7 +186,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                         ClientId = (string)statement[4],
                         Maintainer = (string)statement[5],
                         Location = (string)statement[6],
-                        Status = (string)statement[7]                                          
+                        Status = (string)statement[7]
                     });
                 }
             }
@@ -198,7 +198,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
             using (var statement = _connection.Prepare(@"INSERT INTO FriendRequest ( ToxId,Message) VALUES ( @ToxId,@Message);"))
             {
                 statement.Bind("@ToxId", request.ToxId);
-                statement.Bind("@Message", request.RequestMessage);               
+                statement.Bind("@Message", request.RequestMessage);
                 statement.Step();
             }
         }
@@ -207,14 +207,14 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
         {
             var requests = new List<FriendRequest>();
             using (var statement = _connection.Prepare("SELECT * FROM FriendRequest"))
-            {                
+            {
                 while (statement.Step() == SQLiteResult.ROW)
                 {
                     requests.Add(new FriendRequest()
                     {
                         FriendRequestId = int.Parse(statement[0].ToString()),
-                        ToxId =(string)statement[1].ToString(),
-                        RequestMessage = (string)statement[2]                        
+                        ToxId = (string)statement[1].ToString(),
+                        RequestMessage = (string)statement[2]
                     });
                 }
             }
@@ -222,25 +222,24 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
         }
 
         public void RemoveFriendRequest(string friendRequestId)
-        {            
+        {
             using (var statement = _connection.Prepare("DELETE FROM FriendRequest WHERE ToxId = ?"))
             {
                 statement.Bind(1, friendRequestId);
                 statement.Step();
-            }            
+            }
         }
 
         public void RemoveAllFriendRequest()
         {
             using (var statement = _connection.Prepare("DELETE FROM FriendRequest"))
-            {                
+            {
                 statement.Step();
-            }  
+            }
         }
 
         public bool FriendRequestExists(string friendRequestId)
         {
-            var request = new FriendRequest();
             using (var statement = _connection.Prepare("SELECT * FROM FriendRequest WHERE ToxId = ?"))
             {
                 statement.Bind(1, friendRequestId);
@@ -248,12 +247,28 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                 {
                     statement.Dispose();
                     return false;
-                }                              
+                }
             }
             return true;
         }
 
+        public FriendRequest GetFriendRequestById(int friendRequestId)
+        {
+            var request = new FriendRequest();
+            using (var statement = _connection.Prepare("SELECT * FROM FriendRequest WHERE RequestId = ?"))
+            {
+                statement.Bind(1, friendRequestId);
+                if (statement.Step() == SQLiteResult.ROW)
+                {
+                    request.FriendRequestId = int.Parse(statement[0].ToString());
+                    request.ToxId = statement[1].ToString();
+                    request.RequestMessage = (string)statement[2];
+                }
+            }
+            return request;
+        }
+
         #endregion
-       
+
     }
 }
