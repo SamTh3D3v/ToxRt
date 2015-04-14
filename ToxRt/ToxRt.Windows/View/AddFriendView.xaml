@@ -47,9 +47,43 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock VerticalAlignment="Center" Grid.Row="0" Style="{StaticResource HeaderTextBlockStyle}" FontSize="20" Foreground="Black" Margin="10,0,0,0" Text="Panding requests"      />
-                <ScrollViewer Grid.Row="1" Margin="3" Background="Black">
-                    
-                </ScrollViewer>
+                <!--Probably a wrapanel from the winrttoolkit will looks better-->
+                <ListView Grid.Row="1" Background="LightGray" ItemsSource="{Binding ListPendingRequests}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="WhiteSmoke">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image  Source="../Images/user.png" Height="50" Grid.Column="0" Grid.Row="0"/>
+                                <TextBlock Grid.Column="1"  Grid.Row="0" VerticalAlignment="Center" Foreground="Black" Text="{Binding ToxId}" FontSize="15"/>
+                                <Button BorderBrush="Black" Grid.Column="3" Grid.Row="0"  Command="{Binding AcceptRequestCommand}">
+                                    <Button.Content>
+                                        <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black"  Glyph="&#xE001;" />
+                                    </Button.Content>
+                                </Button>
+                                <Button BorderBrush="Black" Grid.Column="4" Grid.Row="0" Command="{Binding RefuseRequestCommand}">
+                                    <Button.Content>
+                                        <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black"  Glyph="&#xE0A4;" />
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
            
         </Border>

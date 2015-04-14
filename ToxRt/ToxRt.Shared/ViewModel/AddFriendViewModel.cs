@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using GalaSoft.MvvmLight;
@@ -16,6 +17,7 @@ namespace ToxRt.ViewModel
     {
         #region Fields
         private FriendRequest _newFriendRequest;
+        private ObservableCollection<FriendRequest> _listPendingRequests;
         private Tox _tox;
         #endregion
         #region Properties
@@ -34,6 +36,24 @@ namespace ToxRt.ViewModel
                 }
 
                 _newFriendRequest = value;
+                RaisePropertyChanged();
+            }
+        }             
+        public ObservableCollection<FriendRequest> ListPendingRequests
+        {
+            get
+            {
+                return _listPendingRequests;
+            }
+
+            set
+            {
+                if (_listPendingRequests == value)
+                {
+                    return;
+                }
+
+                _listPendingRequests = value;
                 RaisePropertyChanged();
             }
         }
@@ -97,13 +117,33 @@ namespace ToxRt.ViewModel
                     }));
             }
         }
-        private string getFriendStatusMessage(int friendnumber)
+
+
+        private RelayCommand _acceptRequestCommand; 
+        public RelayCommand AcceptRequestCommand
         {
-            return _tox.GetStatusMessage(friendnumber).Replace("\n", "").Replace("\r", "");
+            get
+            {
+                return _acceptRequestCommand
+                    ?? (_acceptRequestCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
         }
-        private string getFriendName(int friendnumber)
+        private RelayCommand _refuseRequestCommand;
+        public RelayCommand RefuseRequestCommand
         {
-            return _tox.GetName(friendnumber).Replace("\n", "").Replace("\r", "");
+            get
+            {
+                return _refuseRequestCommand
+                    ?? (_refuseRequestCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
         }
         #endregion
         #region Ctors and Methods
@@ -111,6 +151,38 @@ namespace ToxRt.ViewModel
         public AddFriendViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
             : base(navigationService, dataService, innerNavigationService)
         {
+            //ttmp for test
+            ListPendingRequests=new ObservableCollection<FriendRequest>()
+            {
+                new FriendRequest()
+                {
+                    RequestMessage = "This is A request messge",
+                    ToxId = "qlinvezorinbporbnportbiornt"
+                },
+                 new FriendRequest()
+                {
+                    RequestMessage = "This is A request messge2",
+                    ToxId = "qlinvezorinbporbnportbiornt"
+                },
+                 new FriendRequest()
+                {
+                    RequestMessage = "This is A request messge3",
+                    ToxId = "qlinvezorinbporbnportbiornt"
+                },
+                 new FriendRequest()
+                {
+                    RequestMessage = "This is A request messge4",
+                    ToxId = "qlinvezorinbporbnportbiornt"
+                }
+            };
+        }
+         private string getFriendStatusMessage(int friendnumber)
+        {
+            return _tox.GetStatusMessage(friendnumber).Replace("\n", "").Replace("\r", "");
+        }
+        private string getFriendName(int friendnumber)
+        {
+            return _tox.GetName(friendnumber).Replace("\n", "").Replace("\r", "");
         }
         public override void Activate(object parameter)
         {
