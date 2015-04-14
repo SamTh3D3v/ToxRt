@@ -50,7 +50,36 @@ namespace ToxRt.ViewModel
                     {
                         try
                         {
-                            int friendnumber = _tox.AddFriend(new ToxId(NewFriendRequest.ToxId), NewFriendRequest.RequestMessage);                                                        
+                            var friendNumber = _tox.AddFriend(new ToxId(NewFriendRequest.ToxId), NewFriendRequest.RequestMessage);
+                            var friendStatus = "";
+                            if (_tox.IsOnline(friendNumber))
+                            {
+                                friendStatus = getFriendStatusMessage(friendNumber);
+                            }
+                            else
+                            {
+                                var lastOnline = TimeZoneInfo.ConvertTime(_tox.GetLastOnline(friendNumber), TimeZoneInfo.Local);
+
+                                if (lastOnline.Year == 1970)
+                                {                                    
+                                    friendStatus = "Friend request sent";
+                                }
+                                else
+                                    friendStatus = string.Format("Last seen: {0}", lastOnline.Date);
+                            }
+
+                            var friendName = getFriendName(friendNumber);
+                            if (string.IsNullOrEmpty(friendName))
+                            {
+                                friendName = _tox.GetClientId(friendNumber).GetString();
+                            }
+
+
+
+
+
+
+
                         }
                         catch (ToxAFException ex)
                         {
@@ -68,6 +97,14 @@ namespace ToxRt.ViewModel
                     }));
             }
         }
+        private string getFriendStatusMessage(int friendnumber)
+        {
+            return _tox.GetStatusMessage(friendnumber).Replace("\n", "").Replace("\r", "");
+        }
+        private string getFriendName(int friendnumber)
+        {
+            return _tox.GetName(friendnumber).Replace("\n", "").Replace("\r", "");
+        }
         #endregion
         #region Ctors and Methods
 
@@ -80,7 +117,8 @@ namespace ToxRt.ViewModel
             if (parameter is Tox)
             {
                 _tox = (Tox) parameter;
-            }            
+            } 
+            NewFriendRequest=new FriendRequest();
         }
         #endregion
     }

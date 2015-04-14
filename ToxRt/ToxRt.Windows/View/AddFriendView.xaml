@@ -32,10 +32,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="DarkGray" Text="ToxId" Grid.Row="0" Grid.Column="0" FontSize="20"/>
-                <TextBox Margin="5" Grid.Column="1" Grid.Row="0"></TextBox>
+                <TextBox Margin="5" Text="{Binding NewFriendRequest.ToxId,Mode=TwoWay}" Grid.Column="1" Grid.Row="0"></TextBox>
 
                 <TextBlock Text="Message" Margin="5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" FontFamily="Segoe UI" HorizontalAlignment="Center"   Foreground="DarkGray" FontSize="20"/>
-                <TextBox AcceptsReturn="True" Height="150" Margin="5" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"></TextBox>
+                <TextBox Text="{Binding NewFriendRequest.RequestMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" Height="150" Margin="5" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"></TextBox>
                 
                 <Button Command="{Binding SendRequestCommand}" Grid.Column="1" Grid.Row="2" Content="Send" Foreground="Black" HorizontalAlignment="Right"></Button>
             </Grid>
