@@ -436,6 +436,19 @@ namespace ToxRt.ViewModel
         }
         #endregion
         #region Commands
+        private RelayCommand _settingsViewLoadedCommand;
+        public RelayCommand SettingsViewLoadedCommand
+        {
+            get
+            {
+                return _settingsViewLoadedCommand
+                    ?? (_settingsViewLoadedCommand = new RelayCommand(
+                    () =>
+                    {
+                        UserDetailsVisibility = Visibility.Visible;
+                    }));
+            }
+        }
         private RelayCommand _audioPreviewCommand;
         public RelayCommand AudioPreviewCommand
         {

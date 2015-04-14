@@ -148,12 +148,10 @@ namespace ToxRt.ViewModel
                         //initiate tox       --get those option parameter from the db                 
                         var options = new ToxOptions(true, false);
 
-                        _tox = new Tox(options);
+                        _tox = new Tox(options); 
                         _tox.OnFriendRequest += tox_OnFriendRequest;
                         _tox.OnFriendMessage += tox_OnFriendMessage;
-
                         
-
                         //Load the nodes from the local db                            
                         _nodes=new ObservableCollection<DHT_Node>(await DataService.LoadAllDhtNodes());
                         //try to bootstap from those node                         
