@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -22,7 +23,7 @@ namespace ToxRt.ViewModel
     public class SettingTypeItem
     {
         public SettingsType SettingsType { get; set; }
-        public String SettingsDisplayName { get; set; }        
+        public String SettingsDisplayName { get; set; }
     }
     public class SettingsViewModel : NavigableViewModelBase
     {
@@ -53,7 +54,7 @@ namespace ToxRt.ViewModel
         private Visibility _userDetailsVisibility = Visibility.Collapsed;
         private Visibility _networkingVisibility = Visibility.Collapsed;
         private Visibility _devicesAndDisplay = Visibility.Collapsed;
-        private ObservableCollection<SettingTypeItem> _settingItems; 
+        private ObservableCollection<SettingTypeItem> _settingItems;
         #endregion
         #region Properties
         public Profile CurrentProfile
@@ -415,7 +416,7 @@ namespace ToxRt.ViewModel
                 _devicesAndDisplay = value;
                 RaisePropertyChanged();
             }
-        }        
+        }
         public ObservableCollection<SettingTypeItem> SettingItems
         {
             get
@@ -446,6 +447,22 @@ namespace ToxRt.ViewModel
                     () =>
                     {
                         UserDetailsVisibility = Visibility.Visible;
+                    }));
+            }
+        }
+        private RelayCommand _copyToClipboardCommand;
+        public RelayCommand CopyToClipboardCommand
+        {
+            get
+            {
+                return _copyToClipboardCommand
+                    ?? (_copyToClipboardCommand = new RelayCommand(
+                    () =>
+                    {
+
+                        var dataPackage = new DataPackage();
+                        dataPackage.SetText(CurrentProfile.ToxId);
+                        Clipboard.SetContent(dataPackage);
                     }));
             }
         }
@@ -530,7 +547,7 @@ namespace ToxRt.ViewModel
         public SettingsViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
             : base(navigationService, dataService, innerNavigationService)
         {
-            SettingItems=new ObservableCollection<SettingTypeItem>()
+            SettingItems = new ObservableCollection<SettingTypeItem>()
             {
                 new SettingTypeItem()
                 {
@@ -553,6 +570,21 @@ namespace ToxRt.ViewModel
                     SettingsDisplayName ="Networking"
                 },
             };
+        }
+        public override void Activate(object parameter)
+        {
+            if (parameter != null)
+            {
+                CurrentProfile = (Profile)parameter;
+            }
+        }
+
+        public override void Deactivate(object parameter)
+        {
+        }
+
+        public override void GoBack()
+        {
         }
         #endregion
     }

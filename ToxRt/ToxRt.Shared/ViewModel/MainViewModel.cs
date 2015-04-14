@@ -178,22 +178,11 @@ namespace ToxRt.ViewModel
                         _tox.Start();
 
                         LocalId= _tox.Id.ToString();
+                        DefaultProfile.ToxId = LocalId;
                         Debug.WriteLine("ID: {0}", LocalId);                        
                     }));
             }
-        }
-
-        private bool Boostraping()
-        {
-            bool success = false;
-            foreach (DHT_Node node in _nodes)
-                success=success || _tox.BootstrapFromNode(new ToxNode(node.Ipv4, node.Port, new ToxKey(ToxKeyType.Public, node.ClientId)));
-            return success;   //make sure that at least one node is bootstraped succesfully
-        }
-        private void UpdateNodes()
-        {
-            
-        }
+        }      
         private RelayCommand _addFriendCommand;
         public RelayCommand AddFriendCommand
         {
@@ -281,7 +270,7 @@ namespace ToxRt.ViewModel
                     ?? (_settingsCommand = new RelayCommand(
                     () =>
                     {
-                        NavigationService.NavigateTo("SettingsView");                        
+                        NavigationService.NavigateTo("SettingsView",DefaultProfile);                        
                     }));
             }
         }
@@ -344,15 +333,27 @@ namespace ToxRt.ViewModel
             //automatically accept every friend request we receive
             _tox.AddFriendNoRequest(new ToxKey(ToxKeyType.Public, e.Id));
         }
-        public void Activate(object parameter)
+        private bool Boostraping()
+        {
+            bool success = false;
+            foreach (DHT_Node node in _nodes)
+                success = success || _tox.BootstrapFromNode(new ToxNode(node.Ipv4, node.Port, new ToxKey(ToxKeyType.Public, node.ClientId)));
+            return success;   //make sure that at least one node is bootstraped succesfully
+        }
+        private void UpdateNodes()
+        {
+
+        }
+        public override void Activate(object parameter)
         {
         }
 
-        public void Deactivate(object parameter)
+        public override void Deactivate(object parameter)
         {
+            
         }
 
-        public void GoBack()
+        public override void GoBack()
         {
         }
         #endregion
