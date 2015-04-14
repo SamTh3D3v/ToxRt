@@ -502,7 +502,7 @@ namespace ToxRt.ViewModel
                     ?? (_goBackCommand = new RelayCommand(
                     () =>
                     {
-                        NavigationService.NavigateTo("MainPage");
+                        NavigationService.NavigateTo("MainPage",CurrentProfile);  //Pass the updated profile
                     }));
             }
         }
@@ -569,6 +569,11 @@ namespace ToxRt.ViewModel
                     SettingsType = SettingsType.Networking,
                     SettingsDisplayName ="Networking"
                 },
+            };
+            Themes=new ObservableCollection<string>()
+            {
+                "light theme",
+                "dark theme"
             };
         }
         public override void Activate(object parameter)

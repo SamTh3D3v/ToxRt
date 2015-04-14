@@ -192,7 +192,7 @@ namespace ToxRt.ViewModel
                     ?? (_addFriendCommand = new RelayCommand(
                     () =>
                     {
-                        InnerNavigationService.NavigateTo("AddFriendView");
+                        InnerNavigationService.NavigateTo("AddFriendView",_tox);
                     }));
             }
         }
@@ -346,6 +346,10 @@ namespace ToxRt.ViewModel
         }
         public override void Activate(object parameter)
         {
+            if (parameter is Profile)
+            {
+                DefaultProfile = (Profile)parameter;
+            }
         }
 
         public override void Deactivate(object parameter)
