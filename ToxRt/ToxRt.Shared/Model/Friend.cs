@@ -16,7 +16,8 @@ namespace ToxRt.Model
         private string _picSource;
         private string _statusMessage;
         private string _toxId;      
-        private int _profileId ;
+        private int _profileId;
+        private int _friendNumber;
         #endregion
         #region Properties  
 
@@ -36,6 +37,24 @@ namespace ToxRt.Model
                 }
 
                 _realName = value;
+                OnPropertyChanged();
+            }
+        }
+        public int FriendNumber
+        {
+            get
+            {
+                return _friendNumber;
+            }
+
+            set
+            {
+                if (_friendNumber == value)
+                {
+                    return;
+                }
+
+                _friendNumber = value;
                 OnPropertyChanged();
             }
         }

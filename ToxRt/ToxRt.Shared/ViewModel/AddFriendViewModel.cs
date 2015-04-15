@@ -38,7 +38,7 @@ namespace ToxRt.ViewModel
                 _newFriendRequest = value;
                 RaisePropertyChanged();
             }
-        }             
+        }
         public ObservableCollection<FriendRequest> ListPendingRequests
         {
             get
@@ -71,6 +71,7 @@ namespace ToxRt.ViewModel
                         try
                         {
                             var friendNumber = _tox.AddFriend(new ToxId(NewFriendRequest.ToxId), NewFriendRequest.RequestMessage);
+                            
                             var friendStatus = "";
                             if (_tox.IsOnline(friendNumber))
                             {
@@ -81,7 +82,7 @@ namespace ToxRt.ViewModel
                                 var lastOnline = TimeZoneInfo.ConvertTime(_tox.GetLastOnline(friendNumber), TimeZoneInfo.Local);
 
                                 if (lastOnline.Year == 1970)
-                                {                                    
+                                {
                                     friendStatus = "Friend request sent";
                                 }
                                 else
@@ -113,7 +114,7 @@ namespace ToxRt.ViewModel
                             Debug.WriteLine("An error occurred, The ID you entered is not valid.");
                             return;
                         }
- 
+
                     }));
             }
         }
@@ -150,7 +151,7 @@ namespace ToxRt.ViewModel
                         ListPendingRequests = new ObservableCollection<FriendRequest>(await DataService.GetAllFriendRequest());
 
 
-                        
+
                     }));
             }
         }
@@ -159,11 +160,11 @@ namespace ToxRt.ViewModel
         {
             get
             {
-                return  _selectPandingRequestCommand
-                    ?? ( _selectPandingRequestCommand = new RelayCommand(
+                return _selectPandingRequestCommand
+                    ?? (_selectPandingRequestCommand = new RelayCommand(
                     () =>
                     {
-                        
+
                     }));
             }
         }
@@ -173,9 +174,9 @@ namespace ToxRt.ViewModel
         public AddFriendViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
             : base(navigationService, dataService, innerNavigationService)
         {
-           
+
         }
-         private string getFriendStatusMessage(int friendnumber)
+        private string getFriendStatusMessage(int friendnumber)
         {
             return _tox.GetStatusMessage(friendnumber).Replace("\n", "").Replace("\r", "");
         }
@@ -183,14 +184,23 @@ namespace ToxRt.ViewModel
         {
             return _tox.GetName(friendnumber).Replace("\n", "").Replace("\r", "");
         }
+        private string getSelfStatusMessage()
+        {
+            return _tox.StatusMessage.Replace("\n", "").Replace("\r", "");
+        }
+
+        private string getSelfName()
+        {
+            return _tox.Name.Replace("\n", "").Replace("\r", "");
+        }
         public override async void Activate(object parameter)
         {
             if (parameter is Tox)
             {
-                _tox = (Tox) parameter;
-            } 
-            NewFriendRequest=new FriendRequest();
-            ListPendingRequests=new ObservableCollection<FriendRequest>(await DataService.GetAllFriendRequest());
+                _tox = (Tox)parameter;
+            }
+            NewFriendRequest = new FriendRequest();
+            ListPendingRequests = new ObservableCollection<FriendRequest>(await DataService.GetAllFriendRequest());
         }
         #endregion
     }
