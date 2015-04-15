@@ -268,6 +268,19 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
             return request;
         }
 
+        public void AddFriend(Friend friend)
+        {
+            using (var statement = _connection.Prepare(@"INSERT INTO FRIENDS ( ScreenName,StatusMessage,ToxId,ProfileId) VALUES ( @ScreenName,@StatusMessage,@ToxId,@ProfileId);"))
+            {
+                statement.Bind("@ScreenName", friend.ScreenName);
+                statement.Bind("@StatusMessage", friend.StatusMessage);
+                statement.Bind("@ToxId", friend.ToxId);
+                statement.Bind("@ProfileId", friend.ProfileId);
+                statement.Step();
+            }
+            
+        }
+
         #endregion
 
     }
