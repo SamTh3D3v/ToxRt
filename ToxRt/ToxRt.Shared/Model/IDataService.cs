@@ -24,6 +24,7 @@ namespace ToxRt.Model
         void AddFriend(Friend friend);
         void RemoveFriend(int friendId);
         void RemoveAllFriends();
+        Task<List<Friend>> GetAllFriends();
 
     }
 }

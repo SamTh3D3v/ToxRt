@@ -6,6 +6,7 @@ using Windows.Devices.Geolocation;
 using Windows.Networking.NetworkOperators;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using SharpTox.Core;
 using ToxRt.Helpers;
@@ -285,15 +286,18 @@ namespace ToxRt.ViewModel
         public MainViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
             :base(navigationService,dataService,innerNavigationService)
         {
-            
-            //for test purpuse only
-            DefaultProfile=new Profile()
+            Messenger.Default.Register<NotificationMessage>(this, (m) =>
             {
-                RealName = "Elhamer Oussama",
-                StatusMessage = "Life is Good",
-                ScreenName = "SamTheDev",
-                PicSource = "../Images/user.png"
-            };
+                switch (m.Notification)
+                {
+                    case "RefreshFriends":
+                        DataService.Get
+                        break;
+                        
+                }
+            });
+            
+            //for test purpuse only           
             ListFriends=new ObservableCollection<Friend>()
             {
                 new Friend()
@@ -309,6 +313,9 @@ namespace ToxRt.ViewModel
                     ScreenName = "Dii34"
                 }
             };
+
+
+
 
         }
         private void tox_OnFriendMessage(object sender, ToxEventArgs.FriendMessageEventArgs e)

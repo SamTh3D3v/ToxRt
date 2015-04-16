@@ -304,6 +304,28 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
             }
         }
 
+        public async Task<List<Friend>> GetAllFriends()
+        {
+            var friends = new List<Friend>();
+            using (var statement = _connection.Prepare("SELECT * FROM FRIENDS"))
+            {
+                while (statement.Step() == SQLiteResult.ROW)
+                {
+                    friends.Add(new Friend()
+                    {
+                        FriendId = int.Parse(statement[0].ToString()),
+                        ScreenName = statement[1].ToString(),
+                        StatusMessage =statement[2].ToString(),
+                        ToxId = statement[3].ToString(),
+                        ProfileId = int.Parse(statement[4].ToString()),
+                        FriendNumber = int.Parse(statement[5].ToString()),
+                        IsPanding = (int.Parse(statement[6].ToString())!=0)
+                    });
+                }
+            }
+            return friends;
+        }
+
         #endregion
 
     }
