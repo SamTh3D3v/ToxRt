@@ -69,7 +69,7 @@ namespace ToxRt.Model
                         ToxId = (string)statement[3],
                         ProfileId = int.Parse(statement[4].ToString()),
                         FriendNumber = int.Parse(statement[5].ToString()),
-                        IsPanding = (int.Parse(statement[6].ToString())==0)
+                        IsPanding = (int.Parse(statement[6].ToString())!=0)
 
 
                     });
