@@ -80,12 +80,12 @@
                         </Flyout>
                     </AppBarButton.Flyout>
                 </AppBarButton>
-            </CommandBar.SecondaryCommands>            
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".5*"/>            
+            <ColumnDefinition Width=".5*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -102,10 +102,10 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Image  Grid.Column="0" Margin="10" Grid.Row="0" Grid.RowSpan="2" Source="{Binding DefaultProfile.PicSource}"/>
-            <TextBlock Margin="2" Grid.Row="0" Text="{Binding DefaultProfile.ScreenName}" Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Bottom" FontSize="25"  Grid.Column="1" />            
-            <TextBlock Margin="2"  Grid.Row="1" Text="{Binding DefaultProfile.StatusMessage}" Foreground="LightGray" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Top" FontSize="12"  Grid.Column="1" />            
+            <TextBlock Margin="2" Grid.Row="0" Text="{Binding DefaultProfile.ScreenName}" Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Bottom" FontSize="25"  Grid.Column="1" />
+            <TextBlock Margin="2"  Grid.Row="1" Text="{Binding DefaultProfile.StatusMessage}" Foreground="LightGray" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Top" FontSize="12"  Grid.Column="1" />
         </Grid>
-        <ListView  IsItemClickEnabled="True" Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" Margin="2" ItemsSource="{Binding ListFriends}">
+        <ListView  IsItemClickEnabled="True" Background="White" Grid.Column="0" Grid.Row="1" Margin="2" ItemsSource="{Binding ListFriends}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
                     <core:InvokeCommandAction Command="{Binding FriendSelectedCommand}"
@@ -118,18 +118,28 @@
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
-                <DataTemplate>                    
-                    <Grid Background="White" Margin="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Margin="2" Grid.Column="0" Source="{Binding PicSource}"/>
-                        <TextBlock Foreground="DeepSkyBlue" FontFamily="{StaticResource ContentControlThemeFontFamily}" VerticalAlignment="Center" FontSize="22" Grid.Column="1" Text="{Binding RealName}"/>
-                    </Grid>
+                <DataTemplate>
+                    <Border BorderThickness="0"  Margin="3" HorizontalAlignment="Stretch">
+                        <Grid Background="WhiteSmoke">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="DarkGray" BorderThickness="0,0,3,0" Margin="5,5,15,5" Width="30" Height="30">
+                                <Image  Source="{Binding PicSource}" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <StackPanel Grid.Column="1"  VerticalAlignment="Center" Margin="14.5,2,0,0">
+                                <TextBlock Text="{Binding ScreenName}" Foreground="Black"/>
+                                <!--<TextBlock Text="{Binding StatusMessage }" Foreground="DarkGray"/>-->
+                            </StackPanel>
+                            <Border Background="DeepSkyBlue" BorderThickness="0" Grid.Column="2" Width="5"  VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                            </Border>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>  
+        </ListView>
         <Frame Background="WhiteSmoke" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="2" x:Name="MainFrame" />
     </Grid>
 </helpers:BindablePage>
