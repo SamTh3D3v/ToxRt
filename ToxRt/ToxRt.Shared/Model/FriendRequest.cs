@@ -7,12 +7,13 @@ using ToxRt.Annotations;
 
 namespace ToxRt.Model
 {
+    //A Friend request object represent received request
     public class FriendRequest:INotifyPropertyChanged
     {
         #region Fields
         private int _friendRequestId;
         private String _requestMessage;
-        private String _toxId;
+        private String _toxId;        
         #endregion
         #region Properties 
         public int FriendRequestId
@@ -69,6 +70,7 @@ namespace ToxRt.Model
                 OnPropertyChanged();
             }
         }
+       
         #endregion
         #region Ctors and Methods
         public event PropertyChangedEventHandler PropertyChanged;

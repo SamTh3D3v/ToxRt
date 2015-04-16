@@ -214,7 +214,8 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                     {
                         FriendRequestId = int.Parse(statement[0].ToString()),
                         ToxId = (string)statement[1].ToString(),
-                        RequestMessage = (string)statement[2]
+                        RequestMessage = (string)statement[2],
+                        IsSentRequest = (int.Parse(statement[3].ToString()) != 0)
                     });
                 }
             }
@@ -263,6 +264,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                     request.FriendRequestId = int.Parse(statement[0].ToString());
                     request.ToxId = statement[1].ToString();
                     request.RequestMessage = (string)statement[2];
+                    request.IsSentRequest = (int.Parse(statement[3].ToString()) != 0);
                 }
             }
             return request;

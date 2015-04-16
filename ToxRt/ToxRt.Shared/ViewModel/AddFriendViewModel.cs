@@ -94,13 +94,6 @@ namespace ToxRt.ViewModel
                             {
                                 friendName = _tox.GetClientId(friendNumber).GetString();
                             }
-
-
-
-
-
-
-
                         }
                         catch (ToxAFException ex)
                         {

@@ -8,6 +8,7 @@ using ToxRt.Annotations;
 
 namespace ToxRt.Model
 {
+    //IsPanding represent a sent friend request from the current profile
     public class Friend:INotifyPropertyChanged
     {
         #region Fields
@@ -18,6 +19,7 @@ namespace ToxRt.Model
         private string _toxId;      
         private int _profileId;
         private int _friendNumber;
+        private bool _isPanding;
         #endregion
         #region Properties  
 
@@ -145,6 +147,24 @@ namespace ToxRt.Model
                 }
 
                 _profileId = value;
+                OnPropertyChanged();
+            }
+        }       
+        public bool IsPanding
+        {
+            get
+            {
+                return _isPanding;
+            }
+
+            set
+            {
+                if (_isPanding == value)
+                {
+                    return;
+                }
+
+                _isPanding = value;
                 OnPropertyChanged();
             }
         }
