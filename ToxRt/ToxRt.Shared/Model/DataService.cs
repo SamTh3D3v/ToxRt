@@ -67,7 +67,10 @@ namespace ToxRt.Model
                         ScreenName = (string)statement[1],
                         StatusMessage = (string)statement[2],
                         ToxId = (string)statement[3],
-                        ProfileId = int.Parse(statement[4].ToString())
+                        ProfileId = int.Parse(statement[4].ToString()),
+                        FriendNumber = int.Parse(statement[5].ToString()),
+                        IsPanding = (int.Parse(statement[6].ToString())==0)
+
 
                     });
                 }
@@ -214,8 +217,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                     {
                         FriendRequestId = int.Parse(statement[0].ToString()),
                         ToxId = (string)statement[1].ToString(),
-                        RequestMessage = (string)statement[2],
-                        IsSentRequest = (int.Parse(statement[3].ToString()) != 0)
+                        RequestMessage = (string)statement[2],                        
                     });
                 }
             }
@@ -263,8 +265,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                 {
                     request.FriendRequestId = int.Parse(statement[0].ToString());
                     request.ToxId = statement[1].ToString();
-                    request.RequestMessage = (string)statement[2];
-                    request.IsSentRequest = (int.Parse(statement[3].ToString()) != 0);
+                    request.RequestMessage = (string)statement[2];                    
                 }
             }
             return request;
@@ -272,13 +273,15 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
 
         public void AddFriend(Friend friend)
         {
-            using (var statement = _connection.Prepare(@"INSERT INTO FRIENDS ( ScreenName,StatusMessage,ToxId,ProfileId,FriendNumber) VALUES ( @ScreenName,@StatusMessage,@ToxId,@ProfileId,@FriendNumber);"))
+            using (var statement = _connection.Prepare(@"INSERT INTO FRIENDS ( ScreenName,StatusMessage,ToxId,ProfileId,FriendNumber,IsPanding) VALUES ( @ScreenName,@StatusMessage,@ToxId,@ProfileId,@FriendNumber,@IsPanding);"))
             {
                 statement.Bind("@ScreenName", friend.ScreenName);
                 statement.Bind("@StatusMessage", friend.StatusMessage);
                 statement.Bind("@ToxId", friend.ToxId);
                 statement.Bind("@ProfileId", friend.ProfileId);
                 statement.Bind("@FriendNumber", friend.FriendNumber);
+                statement.Bind("@IsPanding", friend.IsPanding);
+
                 statement.Step();
             }
             
