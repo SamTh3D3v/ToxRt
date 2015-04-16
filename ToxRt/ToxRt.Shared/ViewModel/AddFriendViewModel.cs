@@ -70,30 +70,30 @@ namespace ToxRt.ViewModel
                     {
                         try
                         {
-                            var friendNumber = _tox.AddFriend(new ToxId(NewFriendRequest.ToxId), NewFriendRequest.RequestMessage);
-                            
-                            var friendStatus = "";
-                            if (_tox.IsOnline(friendNumber))
+                            var friend = new Friend();
+                            friend.FriendNumber = _tox.AddFriend(new ToxId(NewFriendRequest.ToxId), NewFriendRequest.RequestMessage);                            
+                            friend.StatusMessage = "";
+                            if (_tox.IsOnline(friend.FriendNumber))
                             {
-                                friendStatus = getFriendStatusMessage(friendNumber);
+                                friend.StatusMessage = getFriendStatusMessage(friend.FriendNumber);
                             }
                             else
                             {
-                                var lastOnline = TimeZoneInfo.ConvertTime(_tox.GetLastOnline(friendNumber), TimeZoneInfo.Local);
+                                var lastOnline = TimeZoneInfo.ConvertTime(_tox.GetLastOnline(friend.FriendNumber), TimeZoneInfo.Local);
 
                                 if (lastOnline.Year == 1970)
                                 {
-                                    friendStatus = "Friend request sent";
+                                    friend.StatusMessage = "Friend request sent";
                                 }
                                 else
-                                    friendStatus = string.Format("Last seen: {0}", lastOnline.Date);
+                                    friend.StatusMessage = string.Format("Last seen: {0}", lastOnline.Date);
                             }
-
-                            var friendName = getFriendName(friendNumber);
-                            if (string.IsNullOrEmpty(friendName))
+                            friend.ScreenName = getFriendName(friend.FriendNumber);
+                            if (string.IsNullOrEmpty(friend.ScreenName))
                             {
-                                friendName = _tox.GetClientId(friendNumber).GetString();
+                                friend.ScreenName = _tox.GetClientId(friend.FriendNumber).GetString();
                             }
+                            DataService.AddFriend(friend);
                         }
                         catch (ToxAFException ex)
                         {
