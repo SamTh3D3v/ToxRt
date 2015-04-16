@@ -196,7 +196,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
             return nodes;
         }
 
-        public void AddFriendRequest(FriendRequest request)
+        public void ReceiveFriendRequest(FriendRequest request)
         {
             using (var statement = _connection.Prepare(@"INSERT INTO FriendRequest ( ToxId,Message) VALUES ( @ToxId,@Message);"))
             {
@@ -285,6 +285,23 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                 statement.Step();
             }
             
+        }
+
+        public void RemoveFriend(int friendId)
+        {
+            using (var statement = _connection.Prepare("DELETE FROM FRIENDS WHERE FriendId = ?"))
+            {
+                statement.Bind(1, friendId);
+                statement.Step();
+            }
+        }
+
+        public void RemoveAllFriends()
+        {
+            using (var statement = _connection.Prepare("DELETE FROM FRIENDS"))
+            {
+                statement.Step();
+            }
         }
 
         #endregion

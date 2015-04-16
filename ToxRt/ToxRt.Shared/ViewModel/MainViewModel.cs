@@ -327,7 +327,7 @@ namespace ToxRt.ViewModel
 
 
             //Save the friend request in the database            
-            DataService.AddFriendRequest(new FriendRequest()
+            DataService.ReceiveFriendRequest(new FriendRequest()
             {
                 ToxId = e.Id,
                 RequestMessage = e.Message
