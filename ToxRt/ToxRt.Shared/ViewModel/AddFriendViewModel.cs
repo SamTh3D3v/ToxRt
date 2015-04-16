@@ -71,7 +71,11 @@ namespace ToxRt.ViewModel
                     {
                         try
                         {
-                            var friend = new Friend();
+                            var friend = new Friend()
+                            {
+                                ToxId = NewFriendRequest.ToxId,
+                                ProfileId = 1   //-->Need To Get The Current Profile Id
+                            };
                             friend.FriendNumber = _tox.AddFriend(new ToxId(NewFriendRequest.ToxId), NewFriendRequest.RequestMessage);                            
                             friend.StatusMessage = "";
                             if (_tox.IsOnline(friend.FriendNumber))
@@ -94,16 +98,13 @@ namespace ToxRt.ViewModel
                             {
                                 friend.ScreenName = _tox.GetClientId(friend.FriendNumber).GetString();
                             }
+                            
                             DataService.AddFriend(friend);  //loged to the local db
                             //We Must Notify The Main ViewModel Where the Friend List Is Located 
                             //In Order For It To add The New Friend Withe The Panding Sign
                              //The Less Sofisticated Solution is By Using the mvvmlight Messenger to communicate between ViewModels --> This Need To Updated Later 
                             Messenger.Default.Send<NotificationMessage>(new NotificationMessage("RefreshFriends"));
                             NewFriendRequest = new FriendRequest();
-
-
-
-
                         }
                         catch (ToxAFException ex)
                         {

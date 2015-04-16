@@ -291,7 +291,7 @@ namespace ToxRt.ViewModel
                 switch (m.Notification)
                 {
                     case "RefreshFriends":
-                        ListFriends = new ObservableCollection<Friend>(await DataService.GetAllFriends());
+                        ListFriends = new ObservableCollection<Friend>(await DataService.GetAllFriends()); //Missing, The Avatar
                         break;
 
                 }

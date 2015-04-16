@@ -273,7 +273,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
 
         public void AddFriend(Friend friend)
         {
-            using (var statement = _connection.Prepare(@"INSERT INTO FRIENDS ( ScreenName,StatusMessage,ToxId,ProfileId,FriendNumber,IsPanding) VALUES ( @ScreenName,@StatusMessage,@ToxId,@ProfileId,@FriendNumber,@IsPanding);"))
+            using (var statement = _connection.Prepare(@"INSERT INTO FRIENDS (ScreenName,StatusMessage,ToxId,ProfileId,FriendNumber,IsPanding) VALUES ( @ScreenName,@StatusMessage,@ToxId,@ProfileId,@FriendNumber, @IsPanding );"))                   
             {
                 statement.Bind("@ScreenName", friend.ScreenName);
                 statement.Bind("@StatusMessage", friend.StatusMessage);
