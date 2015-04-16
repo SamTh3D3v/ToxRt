@@ -24,8 +24,8 @@ namespace ToxRt.ViewModel
     }
     public class MainViewModel : NavigableViewModelBase
     {
-        #region Fields        
-        private String _localId;       
+        #region Fields
+        private String _localId;
         private ObservableCollection<Friend> _listFriends;
         private Profile _defaultProfile;
         private Tox _tox;
@@ -87,7 +87,7 @@ namespace ToxRt.ViewModel
                 _defaultProfile = value;
                 RaisePropertyChanged();
             }
-        }              
+        }
         public Status UserStatus
         {
             get
@@ -123,15 +123,15 @@ namespace ToxRt.ViewModel
         {
             get
             {
-                return  _loadedCommand
-                    ?? ( _loadedCommand = new RelayCommand(async () =>
+                return _loadedCommand
+                    ?? (_loadedCommand = new RelayCommand(async () =>
                     {
                         //Load the default profile from the database
                         DefaultProfile = DataService.GetDefaultProfile();
-                        if (DefaultProfile==null)
+                        if (DefaultProfile == null)
                         {
                             //Create a default profile before starting
-                            DefaultProfile=new Profile()
+                            DefaultProfile = new Profile()
                             {
                                 ScreenName = "Tmp",
                                 StatusMessage = "Tmp",
@@ -141,7 +141,7 @@ namespace ToxRt.ViewModel
                                 AudioNotifications = 1,
                                 CloseToTray = 1,
                                 IsDefault = 1,
-                                ProfileName = Guid.NewGuid().ToString()                                
+                                ProfileName = Guid.NewGuid().ToString()
                             };
                             DataService.InsertNewProfile(DefaultProfile);
                         }
@@ -149,33 +149,33 @@ namespace ToxRt.ViewModel
                         //initiate tox       --get those option parameter from the db                 
                         var options = new ToxOptions(true, false);
 
-                        _tox = new Tox(options); 
+                        _tox = new Tox(options);
                         _tox.OnFriendRequest += tox_OnFriendRequest;
                         _tox.OnFriendMessage += tox_OnFriendMessage;
-                        
+
                         //Load the nodes from the local db                            
-                        _nodes=new ObservableCollection<DHT_Node>(await DataService.LoadAllDhtNodes());
+                        _nodes = new ObservableCollection<DHT_Node>(await DataService.LoadAllDhtNodes());
                         //try to bootstap from those node                         
-                        if(!Boostraping())
+                        if (!Boostraping())
                         {
                             //update the nodes from the wiki [At least for now] page and reboostraping  
                             UpdateNodes();
                             if (!Boostraping())
                             {
                                 Debug.WriteLine("Can't boostrap from the current nodes !");
-                            }                            
-                        }  
+                            }
+                        }
 
                         _tox.Name = DefaultProfile.ScreenName;    //Everything is loadede from the Sqlite database, no .tox files or anything 
                         _tox.StatusMessage = DefaultProfile.StatusMessage;
                         _tox.Start();
 
-                        LocalId= _tox.Id.ToString();
+                        LocalId = _tox.Id.ToString();
                         DefaultProfile.ToxId = LocalId;
-                        Debug.WriteLine("ID: {0}", LocalId);                        
+                        Debug.WriteLine("ID: {0}", LocalId);
                     }));
             }
-        }      
+        }
         private RelayCommand _addFriendCommand;
         public RelayCommand AddFriendCommand
         {
@@ -185,7 +185,7 @@ namespace ToxRt.ViewModel
                     ?? (_addFriendCommand = new RelayCommand(
                     () =>
                     {
-                        InnerNavigationService.NavigateTo("AddFriendView",_tox);
+                        InnerNavigationService.NavigateTo("AddFriendView", _tox);
                     }));
             }
         }
@@ -198,11 +198,11 @@ namespace ToxRt.ViewModel
                     ?? (_searchFriendCommand = new RelayCommand(
                     () =>
                     {
-                        
+
                     }));
             }
         }
-        private RelayCommand _changeStatusCommand;  
+        private RelayCommand _changeStatusCommand;
         public RelayCommand ChangeStatusCommand
         {
             get
@@ -224,7 +224,7 @@ namespace ToxRt.ViewModel
                     ?? (_addGroupeCommand = new RelayCommand(
                     () =>
                     {
-                        InnerNavigationService.NavigateTo("GroupeChatSettingsView");                        
+                        InnerNavigationService.NavigateTo("GroupeChatSettingsView");
                     }));
             }
         }
@@ -237,7 +237,7 @@ namespace ToxRt.ViewModel
                     ?? (_removeSelectedFriendsCommand = new RelayCommand(
                     () =>
                     {
-                        
+
                     }));
             }
         }
@@ -250,7 +250,7 @@ namespace ToxRt.ViewModel
                     ?? (_loadProfileCommand = new RelayCommand(
                     () =>
                     {
-                        
+
                     }));
             }
         }
@@ -263,7 +263,7 @@ namespace ToxRt.ViewModel
                     ?? (_settingsCommand = new RelayCommand(
                     () =>
                     {
-                        NavigationService.NavigateTo("SettingsView",DefaultProfile);                        
+                        NavigationService.NavigateTo("SettingsView", DefaultProfile);
                     }));
             }
         }
@@ -276,7 +276,7 @@ namespace ToxRt.ViewModel
                     ?? (_creditCommand = new RelayCommand(
                     () =>
                     {
-                        NavigationService.NavigateTo("CreditView");    
+                        NavigationService.NavigateTo("CreditView");
                     }));
             }
         }
@@ -284,21 +284,21 @@ namespace ToxRt.ViewModel
         #endregion
         #region Ctors and Methods
         public MainViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)
-            :base(navigationService,dataService,innerNavigationService)
+            : base(navigationService, dataService, innerNavigationService)
         {
-            Messenger.Default.Register<NotificationMessage>(this, (m) =>
+            Messenger.Default.Register<NotificationMessage>(this, async (m) =>
             {
                 switch (m.Notification)
                 {
                     case "RefreshFriends":
-                        DataService.Get
+                        ListFriends = new ObservableCollection<Friend>(await DataService.GetAllFriends());
                         break;
-                        
+
                 }
             });
-            
+
             //for test purpuse only           
-            ListFriends=new ObservableCollection<Friend>()
+            ListFriends = new ObservableCollection<Friend>()
             {
                 new Friend()
                 {
@@ -363,7 +363,7 @@ namespace ToxRt.ViewModel
 
         public override void Deactivate(object parameter)
         {
-            
+
         }
 
         public override void GoBack()
@@ -371,6 +371,6 @@ namespace ToxRt.ViewModel
         }
         #endregion
 
-       
+
     }
 }
