@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -129,6 +130,7 @@ namespace ToxRt
             bool isDatabaseExisting = false;
             try
             {
+                Debug.WriteLine(ApplicationData.Current.LocalFolder);
                 StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("tox_messages.db"); //needs to be saved in %APPDATA%/tox/
                 isDatabaseExisting = true;
             }

@@ -280,7 +280,7 @@ AudioNotifications=@AudioNotifications,CloseToTray=@CloseToTray,IsDefault=@IsDef
                 statement.Bind("@ToxId", friend.ToxId);
                 statement.Bind("@ProfileId", friend.ProfileId);
                 statement.Bind("@FriendNumber", friend.FriendNumber);
-                statement.Bind("@IsPanding", friend.IsPanding);
+                statement.Bind("@IsPanding", (friend.IsPanding?1:0));
 
                 statement.Step();
             }
