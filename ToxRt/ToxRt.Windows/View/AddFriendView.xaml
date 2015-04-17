@@ -32,14 +32,20 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Style="{StaticResource HeaderTextBlockStyle}" FontSize="15" Foreground="Black" Text="ToxId" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" />
                 <TextBox BorderBrush="DarkGray" Margin="5" Text="{Binding NewFriendRequest.ToxId,Mode=TwoWay}"  Grid.Column="1" Grid.Row="0"></TextBox>
+                <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0"  Grid.Column="2" Grid.Row="0" Command="{Binding PastFromClipboardCommand}">
+                    <Button.Content>
+                        <FontIcon Foreground="Black" FontFamily="Segoe UI Symbol"  Glyph="&#xE16D;"  />
+                    </Button.Content>
+                </Button>
 
                 <TextBlock Text="Message" Margin="10,0,0,0" Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderTextBlockStyle}" FontSize="15" Foreground="Black" VerticalAlignment="Top"   />
-                <TextBox BorderBrush="DarkGray" Text="{Binding NewFriendRequest.RequestMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" Height="150" Margin="5" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"></TextBox>
+                <TextBox BorderBrush="DarkGray" Text="{Binding NewFriendRequest.RequestMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" Height="150" Margin="5" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top"></TextBox>
                 
-                <Button Command="{Binding SendRequestCommand}" Grid.Column="1" Grid.Row="2" Content="Send" Foreground="Black" HorizontalAlignment="Right"></Button>
+                <Button Command="{Binding SendRequestCommand}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Content="Send" Foreground="Black" HorizontalAlignment="Right"></Button>
             </Grid>
         </Border>
         <Border Background="WhiteSmoke" Grid.Row="2" Margin="5,0,5,5">

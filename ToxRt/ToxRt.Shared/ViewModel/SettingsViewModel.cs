@@ -462,7 +462,7 @@ namespace ToxRt.ViewModel
 
                         var dataPackage = new DataPackage();
                         dataPackage.SetText(CurrentProfile.ToxId);
-                        Clipboard.SetContent(dataPackage);
+                        Clipboard.SetContent(dataPackage);                        
                     }));
             }
         }

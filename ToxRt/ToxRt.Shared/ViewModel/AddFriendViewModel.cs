@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
+using Windows.ApplicationModel.DataTransfer;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -120,10 +121,8 @@ namespace ToxRt.ViewModel
                         }
 
                     }));
-            }
+            }            
         }
-
-
         private RelayCommand<int> _acceptRequestCommand;
         public RelayCommand<int> AcceptRequestCommand
         {
@@ -169,6 +168,19 @@ namespace ToxRt.ViewModel
                     () =>
                     {
 
+                    }));
+            }
+        }
+        private RelayCommand _pastFromClipboardCommand;
+        public RelayCommand PastFromClipboardCommand
+        {
+            get
+            {
+                return _pastFromClipboardCommand
+                    ?? (_pastFromClipboardCommand = new RelayCommand( 
+                    () =>
+                    {                       
+                        NewFriendRequest.ToxId = Clipboard.GetContent().GetTextAsync().ToString();
                     }));
             }
         }
