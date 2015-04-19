@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using ToxRt.Annotations;
+using ToxRt.ViewModel;
 
 namespace ToxRt.Model
 {
@@ -20,9 +21,9 @@ namespace ToxRt.Model
         private int _profileId;
         private int _friendNumber;
         private bool _isPanding;
+        private Status _currentStatus = Status.Offline;
         #endregion
         #region Properties  
-
         public int FriendId { get; set; }
         public string RealName
         {
@@ -165,6 +166,24 @@ namespace ToxRt.Model
                 }
 
                 _isPanding = value;
+                OnPropertyChanged();
+            }
+        }        
+        public Status CurrentStatus
+        {
+            get
+            {
+                return _currentStatus;
+            }
+
+            set
+            {
+                if (_currentStatus == value)
+                {
+                    return;
+                }
+
+                _currentStatus = value;
                 OnPropertyChanged();
             }
         }
