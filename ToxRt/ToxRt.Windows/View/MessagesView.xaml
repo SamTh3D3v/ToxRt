@@ -49,24 +49,18 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Border  Grid.Row="2" Margin="5" BorderBrush="Black" BorderThickness="0,3,0,0">
+        <Border  Grid.Row="2" Margin="5" Background="Black" BorderBrush="Black" BorderThickness="0,3,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox  Background="WhiteSmoke"  Text="{Binding TextMessage,Mode=TwoWay}"  Grid.Column="0"/>
-                <Button Background="WhiteSmoke"  VerticalAlignment="Bottom" Command="{Binding SendCommand}" Grid.Column="1" >
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="../Images/send.png" Height="100"/>
-                            <StackPanel Orientation="Vertical" >
-                                <TextBlock Text="Send" VerticalAlignment="Center" Foreground="Black" />
-                                <TextBlock  Text="Message" FontSize="8" VerticalAlignment="Center" Foreground="Gray" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+                <TextBox    Background="WhiteSmoke"   Text="{Binding TextMessage,Mode=TwoWay}"  Grid.Column="0"/>
+                <AppBarButton BorderBrush="Black" Label="Send" Background="Black" Foreground="Black"  VerticalAlignment="Center" Command="{Binding SendCommand}" Grid.Column="1" >
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="MailReply" Foreground="WhiteSmoke"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </Grid>
         </Border>
         
