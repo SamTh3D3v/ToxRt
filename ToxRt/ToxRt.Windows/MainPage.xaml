@@ -133,7 +133,7 @@
                                 <TextBlock Text="{Binding ScreenName}" Foreground="Black"/>
                                 <!--<TextBlock Text="{Binding StatusMessage }" Foreground="DarkGray"/>-->
                             </StackPanel>
-                            <Border Background="DeepSkyBlue" BorderThickness="0" Grid.Column="2" Width="5"  VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                            <Border Background="{Binding CurrentStatus,Converter={StaticResource UserStatusToColorConverter}}" BorderThickness="0" Grid.Column="2" Width="5"  VerticalAlignment="Stretch" HorizontalAlignment="Right">
                             </Border>
                         </Grid>
                     </Border>

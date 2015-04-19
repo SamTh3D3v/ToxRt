@@ -304,13 +304,15 @@ namespace ToxRt.ViewModel
                 {
                     PicSource = "../Images/user.png",
                     RealName = "Joseph Walsh",
-                    ScreenName = "Josheph"
+                    ScreenName = "Josheph",
+                    CurrentStatus = Status.Offline
                 },
                 new Friend()
                 {
                     PicSource = "../Images/user.png",
                     RealName = "Alan Deep",
-                    ScreenName = "Dii34"
+                    ScreenName = "Dii34",
+                    CurrentStatus = Status.Online
                 }
             };
 
