@@ -17,35 +17,28 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </helpers:BindablePage.Resources>
-
-    <Grid>
+    <Grid Background="WhiteSmoke" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            
-            
+            <ColumnDefinition Width="Auto"></ColumnDefinition>   
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Profiel Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>
-        
+        <TextBlock Text="Profiel Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>       
         <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Foreground="Black"></ComboBox>
-        <AppBarButton Foreground="Black"  Grid.Row="0" Grid.Column="2" Label="Load" Command="{Binding}">
+        <AppBarButton   Grid.Row="0" Grid.Column="2" Label="Load" Command="{Binding}">
             <AppBarButton.Icon>
-                <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE18D;" />
+                <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE18D;" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarToggleButton Foreground="Black" Grid.Row="0" Grid.Column="3" Label="Load" Command="{Binding}">
+        <AppBarToggleButton   Grid.Row="0" Grid.Column="3" Label="Load" Command="{Binding}">
             <AppBarToggleButton.Icon>
-                <FontIcon FontFamily="Set as default"  Glyph="&#xE192;"/>
+                <FontIcon FontFamily="Set as default" Foreground="Black"   Glyph="&#xE192;"/>
             </AppBarToggleButton.Icon>
-        </AppBarToggleButton>
-        
-        
-
+        </AppBarToggleButton>      
     </Grid>
 </helpers:BindablePage>
