@@ -87,7 +87,17 @@ namespace ToxRt.ViewModel
             : base(navigationService,dataService, innerNavigationService)
         {
         }
-        
+
+        public override void Activate(object parameter)
+        {
+            base.Activate(parameter);
+        }
+
+        public override void Deactivate(object parameter)
+        {
+            base.Deactivate(parameter);
+        }
+
         #endregion
     }
 }
