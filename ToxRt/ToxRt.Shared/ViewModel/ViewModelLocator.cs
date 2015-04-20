@@ -23,6 +23,7 @@ namespace ToxRt.ViewModel
             SimpleIoc.Default.Register<GoupeChatViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<GroupeChatSettingsViewModel>();
+            SimpleIoc.Default.Register<LoadProfileViewModel>();
             SetupUpNavigationServices();
             SimpleIoc.Default.Register<IDataService, DataService>();
 
@@ -164,6 +165,17 @@ namespace ToxRt.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<GroupeChatSettingsViewModel>();
+            }
+        }
+       
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public LoadProfileViewModel LoadProfileViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LoadProfileViewModel>();
             }
         }
         
