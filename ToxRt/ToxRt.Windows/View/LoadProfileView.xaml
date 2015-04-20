@@ -17,28 +17,32 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </helpers:BindablePage.Resources>
-    <Grid Background="WhiteSmoke" >
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>   
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="Profiel Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>       
-        <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Foreground="Black"></ComboBox>
-        <AppBarButton   Grid.Row="0" Grid.Column="2" Label="Load" Command="{Binding}">
-            <AppBarButton.Icon>
-                <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE18D;" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarToggleButton   Grid.Row="0" Grid.Column="3" Label="Load" Command="{Binding}">
-            <AppBarToggleButton.Icon>
-                <FontIcon FontFamily="Set as default" Foreground="Black"   Glyph="&#xE192;"/>
-            </AppBarToggleButton.Icon>
-        </AppBarToggleButton>      
+        <Grid Background="WhiteSmoke" Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Profiel Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>
+            <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Foreground="Black"></ComboBox>
+            <AppBarButton   Grid.Row="0" Grid.Column="2" Label="Load" Command="{Binding}">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE18D;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarToggleButton   Grid.Row="0" Grid.Column="3" Label="Load" Command="{Binding}">
+                <AppBarToggleButton.Icon>
+                    <FontIcon FontFamily="Set as default" Foreground="Black"   Glyph="&#xE192;"/>
+                </AppBarToggleButton.Icon>
+            </AppBarToggleButton>
+        </Grid>
+        <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">            
+        </Grid>
     </Grid>
 </helpers:BindablePage>
