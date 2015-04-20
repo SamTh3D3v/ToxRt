@@ -30,19 +30,20 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Profiel Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>
-            <ComboBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Foreground="Black"></ComboBox>
-            <AppBarButton   Grid.Row="0" Grid.Column="2" Label="Load" Command="{Binding}">
+            <ComboBox ItemsSource="{Binding ListProfiles}" SelectedItem="{Binding SelectedProfile,Mode=TwoWay}" DisplayMemberPath="ProfileName" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Foreground="Black"></ComboBox>
+            <AppBarButton   Grid.Row="0" Grid.Column="2" Label="Load" Command="{Binding LoadProfileCommand}">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE18D;" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarToggleButton   Grid.Row="0" Grid.Column="3" Label="Load" Command="{Binding}">
+            <AppBarToggleButton   Grid.Row="0" Grid.Column="3" Label="Load" Command="{Binding SetDefaultProfileCommand}">
                 <AppBarToggleButton.Icon>
                     <FontIcon FontFamily="Set as default" Foreground="Black"   Glyph="&#xE192;"/>
                 </AppBarToggleButton.Icon>
             </AppBarToggleButton>
         </Grid>
-        <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">            
+        <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+            <!--Here Goes the Profile Details,Better than Load the Profile To Just Update It, Or To Do That In the Settings--> 
         </Grid>
     </Grid>
 </helpers:BindablePage>

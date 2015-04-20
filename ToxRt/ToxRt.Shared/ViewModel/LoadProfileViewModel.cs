@@ -17,7 +17,7 @@ namespace ToxRt.ViewModel
         private Profile _selectedProfile;
         #endregion
         #region Properties              
-        public ObservableCollection<Profile> ListProfilesNames
+        public ObservableCollection<Profile> ListProfiles
         {
             get
             {
