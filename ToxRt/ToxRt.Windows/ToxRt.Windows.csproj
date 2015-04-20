@@ -122,6 +122,9 @@
     <Compile Include="View\GroupeChatView.xaml.cs">
       <DependentUpon>GroupeChatView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LoadProfileView.xaml.cs">
+      <DependentUpon>LoadProfileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MessagesView.xaml.cs">
       <DependentUpon>MessagesView.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\GroupeChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoadProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -502,7 +502,7 @@ namespace ToxRt.ViewModel
                     ?? (_goBackCommand = new RelayCommand(
                     () =>
                     {
-                        NavigationService.NavigateTo("MainPage",CurrentProfile);  //Pass the updated profile
+                        NavigationService.NavigateTo("MainPage",CurrentProfile);  //Pass the updated profile, No Need For a Save Button 
                     }));
             }
         }
