@@ -76,9 +76,9 @@
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="0" Grid.Column="0" Text="Name"></TextBlock>
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="1" Grid.Column="0" Text="Status Message"/>
                         <TextBlock Margin="2" Style="{ThemeResource BodyTextBlockStyle}"  Grid.Row="2" Grid.Column="0" Text="ToxID"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Text="{Binding CurrentProfile.ScreenName,Mode=TwoWay}"></TextBox>
-                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" TextWrapping="Wrap"  Text="{Binding CurrentProfile.StatusMessage,Mode=TwoWay}"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" TextWrapping="Wrap"  Text="{Binding CurrentProfile.ToxId,Mode=TwoWay}"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" Text="{Binding CurrentProfile.ScreenName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="2" TextWrapping="Wrap"  Text="{Binding CurrentProfile.StatusMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="2" TextWrapping="Wrap"  Text="{Binding CurrentProfile.ToxId,Mode=TwoWay}" IsReadOnly="True"/>
                         <Button VerticalAlignment="Bottom" BorderThickness="0"  Grid.Column="2" Grid.Row="2" Command="{Binding CopyToClipboardCommand}">
                             <Button.Content>
                                 <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE16D;"  />
