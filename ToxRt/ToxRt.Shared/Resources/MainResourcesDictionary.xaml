@@ -6,9 +6,6 @@
     <FontFamily   x:Key="UiMostTextFontFamily" >Segoe UI Semilight</FontFamily>   <!--11pt-->
     <FontFamily   x:Key="UiCaptionsFontFamily" >Segoe UI</FontFamily>      <!--9pt-->
     <FontFamily   x:Key="UiClearlyVisibleFontFamily" >Segoe UI Light</FontFamily> <!--20pt-->
-   
-    
-    
     <SolidColorBrush x:Key="ThemeBrush" Color="#ecf0f1"/>
     <SolidColorBrush x:Key="ThemeFontBrush" Color="Black"/>        
     <converters:ListViewItemClickedConverter x:Key="ListViewItemClickedConverter"/>
@@ -16,5 +13,5 @@
     <converters:OnlineToIsCheckedConverter x:Key="OnlineToIsCheckedConverter"/>
     <converters:OfflineToIsCheckedConverter x:Key="OfflineToIsCheckedConverter"/>
     <converters:AwayToIsCheckedConverter x:Key="AwayToIsCheckedConverter"/>
-    <converters:SettingsListViewItemClickedConverter x:Key="SettingsListViewItemClickedConverter"/>    
+    <converters:SettingsListViewItemClickedConverter x:Key="SettingsListViewItemClickedConverter"/>
 </ResourceDictionary>
