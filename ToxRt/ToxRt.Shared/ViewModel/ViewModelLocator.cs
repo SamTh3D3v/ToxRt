@@ -55,6 +55,7 @@ namespace ToxRt.ViewModel
             navigationService.Configure("SettingsView", typeof(SettingsView));
             navigationService.Configure("MainPage", typeof(MainPage));
             navigationService.Configure("GroupeChatSettingsView", typeof(GroupeChatSettingsView));
+            navigationService.Configure("LoadProfileView", typeof(LoadProfileView));
 
             return navigationService;
         }
@@ -68,6 +69,7 @@ namespace ToxRt.ViewModel
             navigationService.Configure("GroupeChatView", typeof(GroupeChatView));
             navigationService.Configure("SettingsView", typeof(SettingsView));
             navigationService.Configure("GroupeChatSettingsView", typeof(GroupeChatSettingsView));
+            navigationService.Configure("LoadProfileView", typeof(LoadProfileView));
             return navigationService;
 
         }

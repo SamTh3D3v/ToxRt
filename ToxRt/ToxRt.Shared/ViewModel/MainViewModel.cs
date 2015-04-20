@@ -250,7 +250,7 @@ namespace ToxRt.ViewModel
                     ?? (_loadProfileCommand = new RelayCommand(
                     () =>
                     {
-
+                        InnerNavigationService.NavigateTo("LoadProfileView");
                     }));
             }
         }
