@@ -1,8 +1,8 @@
 # ToxRt
 
-A windows8+ and a windows phone 8+ client for Tox, 
+A windows 8+ and windows phone 8+ client for Tox, 
 
-This universal project represent a client for windows 8 Pcs for now, and sooner for all arm based devices as well
+This universal app represent a client for windows 8 Pcs for now, and sooner for all arm based devices as well
 including Windows 8 tablets and Windows phone devices, it is built based on a wrapper developed over the toxcore Library, 
 which you can find here : 
 
