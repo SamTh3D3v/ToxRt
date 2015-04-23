@@ -44,6 +44,20 @@
         </Grid>
         <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
             <!--Here Goes the Profile Details,Better than Load the Profile To Just Update It, Or To Do That In the Settings--> 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Profiel Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>
         </Grid>
     </Grid>
 </helpers:BindablePage>
