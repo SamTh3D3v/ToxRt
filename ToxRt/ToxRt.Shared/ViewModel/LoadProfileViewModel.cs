@@ -15,6 +15,15 @@ namespace ToxRt.ViewModel
         #region Fields
         private ObservableCollection<Profile> _listProfiles;
         private Profile _selectedProfile;
+        private ObservableCollection<String> _listSupportedLanguages = new ObservableCollection<string>()  //To Be Changed 
+        {
+            "English",
+            "French"
+        };
+        private ObservableCollection<String> _lisSupportedThems = new ObservableCollection<string>()
+        {
+            "Dark","Light"
+        };
         #endregion
         #region Properties              
         public ObservableCollection<Profile> ListProfiles
@@ -34,7 +43,43 @@ namespace ToxRt.ViewModel
                 _listProfiles = value;
                 RaisePropertyChanged();
             }
-        }        
+        }
+        public ObservableCollection<String> ListSupportedLangauges
+        {
+            get
+            {
+                return _listSupportedLanguages;
+            }
+
+            set
+            {
+                if (_listSupportedLanguages == value)
+                {
+                    return;
+                }
+
+                _listSupportedLanguages = value;
+                RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<String> ListSupportedThems
+        {
+            get
+            {
+                return _lisSupportedThems;
+            }
+
+            set
+            {
+                if (_lisSupportedThems == value)
+                {
+                    return;
+                }
+
+                _lisSupportedThems = value;
+                RaisePropertyChanged();
+            }
+        }
         public Profile SelectedProfile
         {
             get
