@@ -36,7 +36,7 @@
                     <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE18D;" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarToggleButton   Grid.Row="0" Grid.Column="3" Label="Load" Command="{Binding SetDefaultProfileCommand}">
+            <AppBarToggleButton   Grid.Row="0" Grid.Column="3" Label="IsDefault" Command="{Binding SetDefaultProfileCommand}">
                 <AppBarToggleButton.Icon>
                     <FontIcon FontFamily="Set as default" Foreground="Black"   Glyph="&#xE192;"/>
                 </AppBarToggleButton.Icon>
@@ -50,7 +50,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
@@ -58,6 +58,33 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Profiel Name" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>
+            <TextBlock Text="Language" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>
+            <TextBlock Text="Theme" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Grid.Column="0"></TextBlock>
+            
+            
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="5"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Margin="5"/>
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <AppBarToggleButton   Grid.Row="0" Grid.Column="0" Label="IsDefault" Command="{Binding SaveProfileCommand}">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon FontFamily="Set as default" Foreground="Black"   Glyph="&#xE105;"/>
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
+                <AppBarToggleButton   Grid.Row="0" Grid.Column="1" Label="IsDefault" Command="{Binding DeleteProfileCommand}">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon FontFamily="Set as default" Foreground="Black"   Glyph="&#xE107;"/>
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
+            </Grid>
+            
+            
+            
+            
         </Grid>
     </Grid>
 </helpers:BindablePage>
