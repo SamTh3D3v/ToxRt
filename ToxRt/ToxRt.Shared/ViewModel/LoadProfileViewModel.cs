@@ -126,6 +126,45 @@ namespace ToxRt.ViewModel
                     }));
             }
         }
+        private RelayCommand _saveProfileCommand;
+        public RelayCommand SaveProfileCommand
+        {
+            get
+            {
+                return _saveProfileCommand
+                    ?? (_saveProfileCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
+        }
+        private RelayCommand _deleteProfileCommand;
+        public RelayCommand DeleteProfileCommand
+        {
+            get
+            {
+                return _deleteProfileCommand
+                    ?? (_deleteProfileCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
+        }
+        private RelayCommand _profilePageLoadedCommand;
+        public RelayCommand ProfilePageLoadedCommand
+        {
+            get
+            {
+                return _profilePageLoadedCommand
+                    ?? (_profilePageLoadedCommand = new RelayCommand(
+                    () =>
+                    {
+                        //Load profile from the sqlite DB
+                    }));
+            }
+        }
         #endregion
         #region Ctors and Methods
         public LoadProfileViewModel(INavigationService navigationService, IDataService dataService, IMessagesNavigationService innerNavigationService)

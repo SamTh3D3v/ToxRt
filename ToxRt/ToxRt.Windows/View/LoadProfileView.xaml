@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:ToxRt.Helpers"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
     <helpers:BindablePage.DataContext>
         <Binding Source="{StaticResource Locator}" Path="LoadProfileViewModel"></Binding>
@@ -17,6 +19,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </helpers:BindablePage.Resources>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding ProfilePageLoadedCommand}"/>
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -64,7 +71,7 @@
             
             <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding SelectedProfile,Mode=TwoWay}"/>
             <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" ItemsSource="{Binding ListSupportedLangauges}" SelectedItem="{Binding SelectedProfile.ProfileLanguage,Mode=TwoWay}"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Margin="5" ItemsSource="{Binding ListSupportedThems}" SelectedItem="{Binding SelectedProfile.ProfileTheme,,Mode=TwoWay}"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Margin="5" ItemsSource="{Binding ListSupportedThems}" SelectedItem="{Binding SelectedProfile.ProfileTheme,Mode=TwoWay}"/>
             <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
